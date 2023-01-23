@@ -1,26 +1,26 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <nav>
+        <div class="logos">
+            <div class="iconMenu">
+                <span class="material-symbols-outlined">menu</span>
+            </div>
+            <div class="imgCont">
+                <img src="./assets/logo.png" alt="Logo de Osmaldy Maldonado">
+            </div>
+        </div>
+        <ul>
+            <li><div class="modo"><span class="material-symbols-outlined">dark_mode</span></div></li>
+            <li><router-link to="/">Inicio</router-link></li>
+            <li><router-link to="/#Sobre_mi">Sobre mi</router-link></li>
+            <li><router-link to="/#Que_puedo_hacer">¿Que puedo hacer?</router-link></li>
+            <li><router-link to="/#Contactos">Contactos</router-link></li>
+        </ul>
+    </nav>
+    <router-view/>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
-
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0');
+  @import url("./css/menu.css");
+  @import url('./css/master.css');
 </style>
