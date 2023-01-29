@@ -17,8 +17,21 @@ body{
    background-color: var(--SColor);
 }
 
-a, router-link{
+h1{
+   color: var(--PColor);
+}
+
+a.router-link-exact-active,
+li{
+   font-size: 16pt;
+}
+
+p{
    font-size: 14pt;
+}
+
+.presentacion, .sMi, .plats, .contactos{
+   height: 100vh;
 }
 
 /* Todos los contenedores de todas las imágenes */
