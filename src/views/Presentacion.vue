@@ -6,14 +6,14 @@
       </div>
 
       <div class="frags">
-        <img class="m cabeza" src="../assets/SVG/cabeza.svg">
-        <img class="anim der ojo" src="../assets/SVG/ojo.svg">
-        <img class="anim izq eja" src="../assets/SVG/eja.svg">
-        <img class="anim m izq nariz" src="../assets/SVG/nariz.svg">
-        <img class="anim m der boca" src="../assets/SVG/boca.svg">
-        <img class="lineaCabeza" src="../assets/SVG/lineaCabeza.svg">
-        <img class="cuelloC" src="../assets/SVG/cuelloC.svg">
-        <img class="m cuelloCam" src="../assets/SVG/cuelloCam.svg">
+        <img class="m cabeza" src="../assets/fragments/cabeza.svg">
+        <img class="anim der ojo" src="../assets/fragments/ojo.svg">
+        <img class="anim izq eja" src="../assets/fragments/eja.svg">
+        <img class="anim m izq nariz" src="../assets/fragments/nariz.svg">
+        <img class="anim m der boca" src="../assets/fragments/boca.svg">
+        <img class="lineaCabeza" src="../assets/fragments/lineaCabeza.svg">
+        <img class="cuelloC" src="../assets/fragments/cuelloC.svg">
+        <img class="m cuelloCam" src="../assets/fragments/cuelloCam.svg">
       </div>
       <div class="contImg">
         <img src="../assets/o1_m.png" alt="">
