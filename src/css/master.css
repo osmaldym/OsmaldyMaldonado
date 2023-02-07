@@ -35,6 +35,8 @@ p{
 
 .presentacion, .sMi, .plats, .contactos{
    height: 100vh;
+   position: relative;
+   display: flex;
 }
 
 /* Todos los contenedores de todas las imágenes */

@@ -13,28 +13,62 @@
           <div class="tecs">
             <h1>Tecnologías que manejo</h1>
             <div class="logos">
-              <ul>
-                <li class="imgCont"><div class="html"></div></li>
-                <li class="imgCont"><div class="css"></div></li>
-                <li class="imgCont"><div class="js"></div></li>
-                <li class="imgCont"><div class="ts"></div></li>
-                <li class="imgCont"><div class="react"></div></li>
-                <li class="imgCont"><div class="vue"></div></li>
-                <li class="imgCont"><img src="../assets/lenguajes/php.svg" alt="Img1"></li>
-                <li class="imgCont"><div class="java"></div></li>
-                <li class="imgCont"><img src="../assets/lenguajes/py.svg" alt="Img1"></li>
+              <ul @pointerdown="addMove">
+                <li class="imgCont"><div class="icono html"></div></li>
+                <li class="imgCont"><div class="icono css"></div></li>
+                <li class="imgCont"><div class="icono js"></div></li>
+                <li class="imgCont"><div class="icono ts"></div></li>
+                <li class="imgCont"><div class="icono react"></div></li>
+                <li class="imgCont"><div class="icono vue"></div></li>
+                <li class="imgCont"><div class="icono php"></div></li>
+                <li class="imgCont"><div class="icono java"></div></li>
+                <li class="imgCont"><div class="icono py"></div></li>
               </ul>
             </div>
           </div>
 
         </div>
         <div class="graphs">
-          <div class="pcs">
-            <div class="app">
-              <div class="acciones">
-                <span class="material-symbols-outlined">close</span>
-                <span class="material-symbols-sharp">check_box_outline_blank</span>
-                <span class="material-symbols-outlined">minimize</span>
+          <div class="all">
+            <div class="pcs">
+              <div class="app">
+                <div class="acciones">
+                  <span class="material-symbols-outlined">close</span>
+                  <span class="material-symbols-sharp">check_box_outline_blank</span>
+                  <span class="material-symbols-outlined">minimize</span>
+                </div>
+                <div class="pant">
+                  <div class="inputs">
+                    <div class="input"></div>
+                    <div class="input"></div>
+                    <div class="input"></div>
+                  </div>
+                  <div class="table">
+                    <div class="title"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="web">
+                <div class="acciones">
+                  <span class="material-symbols-outlined">close</span>
+                  <span class="material-symbols-sharp">check_box_outline_blank</span>
+                  <span class="material-symbols-outlined">minimize</span>
+                </div>
+                <div class="barra"></div>
+                <div class="pant">
+                  <div class="rep">
+                    <h1>WWW</h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cel">
+              <div class="notif">
+                <div class="l"><p>12:00</p></div>
+                <div class="cam"></div>
+                <div class="r"></div>
               </div>
               <div class="pant">
                 <div class="inputs">
@@ -42,47 +76,15 @@
                   <div class="input"></div>
                   <div class="input"></div>
                 </div>
-                <div class="table">
-                  <div class="title"></div>
-                </div>
+                  <div class="table">
+                    <div class="title"></div>
+                  </div>
               </div>
-            </div>
-
-            <div class="web">
-              <div class="acciones">
-                <span class="material-symbols-outlined">close</span>
-                <span class="material-symbols-sharp">check_box_outline_blank</span>
-                <span class="material-symbols-outlined">minimize</span>
+              <div class="botones">
+                <span class="material-symbols-sharp">crop_square</span>
+                <span class="material-symbols-sharp">circle</span>
+                <span class="material-symbols-sharp btnAtras">change_history</span>
               </div>
-              <div class="barra"></div>
-              <div class="pant">
-                <div class="rep">
-                  <h1>WWW</h1>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="cel">
-            <div class="notif">
-              <div class="l"><p>12:00</p></div>
-              <div class="cam"></div>
-              <div class="r"></div>
-            </div>
-            <div class="pant">
-              <div class="inputs">
-                <div class="input"></div>
-                <div class="input"></div>
-                <div class="input"></div>
-              </div>
-                <div class="table">
-                  <div class="title"></div>
-                </div>
-            </div>
-            <div class="botones">
-              <span class="material-symbols-sharp">crop_square</span>
-              <span class="material-symbols-sharp">circle</span>
-              <span class="material-symbols-sharp btnAtras">change_history</span>
             </div>
           </div>
         </div>
@@ -92,19 +94,96 @@
 
 <script>
   export default {
-    name: 'PartPlats'
+    name: 'PartPlats',
+    data () {
+      return {
+        logos: null,
+        logosUl: null,
+        restWidth: 0
+      }
+    },
+    mounted () { // On load
+      this.obtYDesplazar()
+    },
+    methods: {
+      preventAll(e){
+        // Todos los prevent
+        e.preventDefault()
+        e.stopPropagation()
+        e.stopImmediatePropagation()
+      },
+
+      addTransition(elem, ...args){
+        let transition = 'all '
+
+        if (args[0] != null || args[0] != undefined) transition += args[0] + ' '
+        else transition += '0.5s '
+
+        if (args[1] != null || args[1] != undefined) transition += args[1]
+        else transition += 'ease-out'
+
+        elem.style.transition = transition
+      },
+      quitTransition(elem){ elem.style.transition = 'none 0 ease' },
+
+      revLeft(elem){ // Revision de si ya la propiedad left tiene datos
+        if (elem.style.left != '') return parseInt(elem.style.left.replace('px'))
+        return 0
+      },
+
+      obtYDesplazar(){
+        this.logos = document.querySelector('.tecs > .logos')
+        this.logosUl = document.querySelector('.logos > ul')
+        this.restWidth = (this.logosUl.offsetWidth * -1) - (this.logos.offsetWidth * -1)
+
+        setInterval(() => {
+          let left = this.revLeft(this.logosUl)
+
+          if (left > this.restWidth) left = left - 1
+          else {
+            this.addTransition(this.logosUl)
+            left = 120
+          }
+
+          this.logosUl.style.left = left + 'px'
+        }, 10)
+      },
+
+      addMove(){
+        // Añadiendo listeners necesarios
+        this.logosUl.addEventListener('pointermove', this.elemMove)
+        this.logosUl.addEventListener('pointerup', this.remElemMove)
+        this.logosUl.addEventListener('pointerout', this.remElemMove)
+      },
+
+      elemMove(e){
+        this.preventAll(e)
+
+        // Estableciendo variables
+        let actualLeft = this.revLeft(this.logosUl) + e.movementX
+
+        console.log(actualLeft, this.logosUl.offsetWidth);
+
+        if (actualLeft > this.restWidth && actualLeft < 0) this.logosUl.style.left = actualLeft + 'px'
+      },
+
+      remElemMove(e){
+        this.preventAll(e)
+        this.logosUl.removeEventListener('pointermove', this.elemMove)
+      }
+    }
   }
 </script>
 
 <style scoped>
-  .plats{
+  .plats {
     --w-Of-PC-Pant: 500px;
     --h-Of-PC-Pant: 300px;
-    --r-Of-PC-Pant: 2%;
 
     --w-Of-Cel: 260px;
     --h-Of-Cel: 500px;
     --cel-Cam-Tam: 15px;
+    --LOfCel: -130px;
 
     --size_p: 16pt;
 
@@ -113,12 +192,12 @@
 
   .info, .divs, .graphs, .acciones,
   .inputs, .pant, .notif, .botones,
-  .pcs, .logos > ul{
+  .pcs, .logos > ul {
     position: relative;
     display: flex;
   }
 
-  p{
+  p {
     color: var(--PColor);
     font-size: var(--size_p);
   }
@@ -127,23 +206,23 @@
     text-align: center;
   }
 
-  .info h1, ul{
+  .info h1, ul {
     margin-bottom: 20px;
   }
 
-  ul{
+  ul {
     color: #fff;
   }
 
-  span{
+  span {
     color: var(--PColor);
   }
 
-  .plats, .info, .inputs, .pcs{
+  .plats, .info, .inputs, .pcs {
     flex-direction: column;
   }
 
-  .info, .pant, .inputs, .botones{
+  .info, .pant, .inputs, .botones {
     justify-content: center;
     align-items: center;
   }
@@ -151,11 +230,10 @@
   /* Parte de Plataformas */
   .tecs {
     width: 100%;
-    /* overflow: hidden; */
   }
 
   .logos {
-    /* overflow: hidden; */
+    overflow: hidden;
     position: relative;
     height: 20vh;
   }
@@ -172,42 +250,42 @@
     height: 20vh;
   }
 
-  .logos > ul > li > div{
+  .logos > ul > li > .icono {
     background-color: var(--PColor);
   }
 
-
+  /* Todos los SVG */
   .logos > ul > li > .html { mask: url('@/assets/lenguajes/html.svg') no-repeat center; }
   .logos > ul > li > .css { mask: url('@/assets/lenguajes/css.svg') no-repeat center; }
   .logos > ul > li > .js { mask: url('@/assets/lenguajes/js.svg') no-repeat center; }
   .logos > ul > li > .ts { mask: url('@/assets/lenguajes/ts.svg') no-repeat center; }
+  .logos > ul > li > .php { mask: url('@/assets/lenguajes/php.svg') no-repeat center; }
   .logos > ul > li > .react { mask: url('@/assets/lenguajes/react.svg') no-repeat center; }
   .logos > ul > li > .vue { mask: url('@/assets/lenguajes/vue.svg') no-repeat center; }
   .logos > ul > li > .java { mask: url('@/assets/lenguajes/java.svg') no-repeat center; }
+  .logos > ul > li > .py { mask: url('@/assets/lenguajes/py.svg') no-repeat center; }
 
-  .divs, .info{
+  .divs, .info {
     height: 100%;
   }
 
-  .info{
-    width: 45%;
+  .info {
+    width: 60%;
     padding: 5%;
   }
 
-  .graphs{
+  .graphs {
     align-items: center;
     width: 100%;
-    /* QUITAR CUANDO SE TERMINE LO DE LOGOS */
-    opacity: 0;
   }
 
-  .pcs{
+  .all {
     position: absolute;
-    right: var(--r-Of-PC-Pant);
+    right: calc(25% + var(--LOfCel));
   }
 
   /* Todos los dispositivos */
-  .app, .cel, .web{
+  .app, .cel, .web {
     overflow: hidden;
     box-shadow: 0 0 15px #000;
     background-color: rgb(170, 170, 170);
@@ -230,6 +308,7 @@
   .pant{
     flex-wrap: wrap;
     gap: 10px;
+    padding: 15px 0;
   }
 
   .inputs{
@@ -263,6 +342,10 @@
     height: var(--h-Of-PC-Pant);
   }
 
+  .app > .pant{
+    height: calc(100% - 35px);
+  }
+
   .acciones{
     flex-direction: row-reverse;
     padding: var(--gen-padding);
@@ -293,7 +376,8 @@
   /* CELULAR */
   .cel{
     position: absolute;
-    right: calc((var(--w-Of-PC-Pant) + var(--r-Of-PC-Pant)) - 130px);
+    top: 10%;
+    left: var(--LOfCel);
     width: var(--w-Of-Cel);
     height: var(--h-Of-Cel);
   }

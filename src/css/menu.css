@@ -28,10 +28,18 @@ nav{
     position: fixed;
 }
 
-nav > .logos > .imgCont,
+nav > .logos {
+    gap: 5px;
+}
+
+nav > .logos > a.router-link-exact-active > .imgCont,
 nav > .logos > .iconMenu{
     width: 60px;
     height: 60px;
+}
+
+nav > .logos > .iconMenu {
+    justify-content: center;
 }
 
 nav > .logos > .iconMenu > span{
