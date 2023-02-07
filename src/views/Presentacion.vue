@@ -21,6 +21,9 @@
 
       <div class="valores">
         <h1>{{ this.valor }}</h1>
+        <div class="check">
+            <span class="material-symbols-sharp">done</span>
+        </div> 
       </div>
   </div>
 </template>
@@ -33,7 +36,7 @@
             allFrags: [],
             valoresCont: null,
             hideValor: null,
-            valor: 'Texto de ejemplo'
+            valor: 'Contratame por favor. Necesito dinero 🙏🏻'
         }
     },
     mounted () {
@@ -44,10 +47,13 @@
         getElemsAndAnim(){
             this.allFrags = document.querySelector('.presentacion > .frags').childNodes
             this.valoresCont = document.querySelector('.presentacion > .valores')
+
+            this.valoresCont.style.opacity = '0'
+
             this.allFrags.forEach((elem) => this.animFrag(elem));
         },
 
-        // Poniendole valor etico
+        // Poniendole valor etico, presentandolo y ocultandolo
         setValor(valor){
             this.valoresCont.style.transition = 'all 0.8s ease-out'
             this.valor = valor
@@ -68,7 +74,7 @@
             elem.style.transition = 'all 1.5s ease'
 
             setInterval(() => {
-                let neg = -6, pos = 2
+                let neg = -10, pos = 2
 
                 let numX = this.random(neg, pos), 
                 numY = this.random(neg, pos)
@@ -85,124 +91,163 @@
     .presentacion {
         --top-nombre: 15%;
         --left-nombre: 5%;
+
+        --tam-icon: 40px;
     }
 
-  .frags, .contImg{
-    height: 100vh;
-    width: 50%;
-  }
+    .frags, .contImg{
+        height: 100vh;
+        width: 50%;
+    }
 
-  /* Parte de presentación */
-  .contImg > img{
-    height: 100%;
-    display: none;
-  }
+    /* Parte de presentación */
+    .contImg > img{
+        height: 100%;
+    }
 
-   /*Nombre*/ 
-  .nombre {
-    position: absolute;
+    /*Nombre*/ 
+    .nombre {
+        z-index: 999;
+        position: absolute;
 
-    border: solid 3px var(--PColor);
-    border-style: dashed;
-    border-radius: 15px;
-    padding: 15px;
+        border: solid 3px var(--PColor);
+        border-style: dashed;
+        border-radius: 15px;
+        padding: 15px;
 
-    background: -webkit-linear-gradient(-60deg, var(--PColor), #fff);
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    -webkit-background-clip: text;
+        background: -webkit-linear-gradient(-60deg, var(--PColor), #fff);
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
 
-    top: var(--top-nombre);
-    left: var(--left-nombre);
-  }
+        top: var(--top-nombre);
+        left: var(--left-nombre);
+    }
 
-   /*Fragmentos*/
-  .frags {
-    position: relative;
-  }
+    /*Fragmentos*/
+    .frags {
+        position: relative;
+    }
 
-  .frags > img {
-    position: absolute;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-  }
+    .frags > img {
+        position: absolute;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
 
-  .frags > .m {
-    right: 5px;
-  }
+    .frags > .m {
+        right: 5px;
+    }
 
-  .frags > .cabeza{
-    z-index: 0;
-    top: 7%;
-    height: 65%;
-  }
+    .frags > .cabeza{
+        z-index: 0;
+        top: 7%;
+        height: 65%;
+    }
 
-  .frags > .lineaCabeza{
-    z-index: 1;
-    top: 25%;
-    right: 6%;
-    height: 15%;
-  }
+    .frags > .lineaCabeza{
+        z-index: 1;
+        top: 25%;
+        right: 50px;
+        height: 15%;
+    }
 
-  .frags > .eja {
-    z-index: 2;
-    right: 20px;
-    top: 34%;
-    height: 5.3%;
-  }
+    .frags > .eja {
+        z-index: 2;
+        right: 20px;
+        top: 34%;
+        height: 5.3%;
+    }
 
-  .presentacion > .frags > .ojo {
-    z-index: 3;
-    right: 30px;
-    top: 39%;
-    height: 2.6%;
-  }
+    .presentacion > .frags > .ojo {
+        z-index: 3;
+        right: 30px;
+        top: 39%;
+        height: 2.6%;
+    }
 
-  .frags > .nariz {
-    z-index: 4;
-    top: 38%;
-    height: 16%;
-  }
+    .frags > .nariz {
+        z-index: 4;
+        top: 38%;
+        height: 16%;
+    }
 
-  .frags > .boca{
-    z-index: 5;
-    top: 57%;
-    height: 6%;
-  }
+    .frags > .boca{
+        z-index: 5;
+        top: 57%;
+        height: 6%;
+    }
 
-  .frags > .cuelloC{
-    z-index: 6;
-    bottom: 0;
-    height: 37%;
-    right: 16.5%;
-  }
+    .frags > .cuelloC{
+        z-index: 6;
+        bottom: 0;
+        height: 37%;
+        right: 120px;
+    }
 
-  .frags > .cuelloCam{
-    bottom: 14.5%;
-    height: 10%;
-  }
+    .frags > .cuelloCam{
+        bottom: 14.5%;
+        height: 10%;
+    }
 
-  .frags > .anim {
-    cursor: pointer;
-  }
+    .frags > .anim {
+        cursor: pointer;
+    }
 
-  /* Parte de los valores */
-  .valores {
-    position: absolute;
-    bottom: var(--top-nombre);
-    right: var(--left-nombre);
-  } 
+    /* Parte de los valores */
+    .valores, .valores > .check {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-  .frags > .izq:hover {
-    transform: scale(1.1) rotate(-5deg);
-  }
+    .valores {
+        position: absolute;
+        bottom: var(--top-nombre);
+        right: var(--left-nombre);
+    } 
 
-  .frags > .der:hover {
-    transform: scale(1.1) rotate(5deg);
-  }
+    .valores > h1 {
+        text-shadow: 0 0 0px #222;
+        text-decoration: underline;
+    }
 
-  .frags > .anim {
-    transition: all 0.3s ease-out;
-  }
+    .valores > .check {
+        height: var(--tam-icon);
+        width: var(--tam-icon);
+        border-radius: var(--tam-icon);
+        margin-left: 5px;
+        border: solid 2px var(--PColor);
+    }
+
+    .valores > .check > span {
+        font-size: 28pt;
+        color: var(--PColor);
+    }
+
+    /* Responsive */
+    @media (max-width: 800px){
+        .nombre {
+            left: 10%;
+            right: 10%;
+        }
+
+        .valores {
+            bottom: 50px;
+        }
+    }
+
+    .frags > .izq:hover {
+        transform: scale(1.1) rotate(-5deg);
+    }
+
+    .frags > .der:hover {
+        transform: scale(1.1) rotate(5deg);
+    }
+
+    .frags > .anim,
+    .nombre {
+        transition: all 0.3s ease-out;
+    }
 </style>
