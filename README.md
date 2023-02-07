@@ -1,24 +1,13 @@
-# om
+# Osmaldy Maldonado
 
-## Project setup
-```
-npm install
-```
+Este es mi portafolio personal, mas especificamente mi carta de presentación, 
+el cual tiene como finalidad demostrar mis habilidades generales entorno a la programación, 
+espacialmente en:
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+* HTML
+* CSS
+* JavaScript
+* Vue
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Tambien doy diferentes informaciones sobre mi vida, consigo como llegue
+a la programacion.
