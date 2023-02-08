@@ -1,7 +1,8 @@
 <template>
+    <div class="iconMenu imo" @click="presentarMenu()"><span class="material-symbols-outlined">menu</span></div>
     <nav>
         <div class="logos">
-            <div class="iconMenu"><span class="material-symbols-outlined">menu</span></div>
+            <div class="iconMenu" @click="ocultarMenu()"><span class="material-symbols-outlined">menu</span></div>
             <router-link to="/"><div class="imgCont"><img src="@/assets/logo.png" alt="Logo de Osmaldy Maldonado"></div></router-link>
         </div>
         <ul>
@@ -28,7 +29,8 @@
             return {
                 elems: [],
                 actualScroll: 0,
-                menu: null
+                menu: null,
+                iconMenu: null
             }
         },
         mounted () {
@@ -36,9 +38,11 @@
         },
         methods: {
             createNecesary(){
-                this.elems = document.querySelector('.content').childNodes
                 this.menu = document.querySelector('nav')
+                this.iconMenu = document.querySelector('.imo')
 
+                this.presentarMenu()
+                
                 window.addEventListener('scroll', this.addAll)
             },
 
@@ -54,13 +58,24 @@
                 this.addChangeURL()
             },
 
+            // Presentar y ocultar el menu, todos los metodos
             presentarMenu(){
-                this.menu.style.top = '0'
+                this.presentar(this.menu)
+                this.ocultar(this.iconMenu)
             },
 
             ocultarMenu(){
-                this.menu.style.transition = 'all 0.3s ease-in-out'
-                this.menu.style.top = '-60px'
+                this.ocultar(this.menu)
+                this.presentar(this.iconMenu)
+            },
+
+            presentar(elem){
+                elem.style.top = '0'
+            },
+
+            ocultar(elem){
+                elem.style.transition = 'all 0.3s ease-in-out'
+                elem.style.top = '-60px'
             },
 
             addMenuEffect(){

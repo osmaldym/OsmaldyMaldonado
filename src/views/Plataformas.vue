@@ -277,6 +277,7 @@
   .graphs {
     align-items: center;
     width: 100%;
+    overflow: hidden;
   }
 
   .all {
@@ -415,4 +416,9 @@
     padding: 0 15px;
   }
 
+  @media (max-width: 800px){
+    .plats {
+      height: 100%;
+    }
+  }
 </style>

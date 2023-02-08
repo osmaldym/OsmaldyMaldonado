@@ -26,75 +26,82 @@
   }
 </script>
 
-<style>
+<style scoped>
   /* TODO */
-  .sMi > .parts,
-  .sMi > .parts > .info,
-  .sMi > .parts > .info > .sm > .otros > ul > li{
-      position: relative;
-      display: flex;
+  .parts, .info, .otros > ul > li{
+    position: relative;
+    display: flex;
   }
   
-  .sMi > .parts > .info{
-      justify-content: center;
-      align-items: center;
+  .info{
+    justify-content: center;
+    align-items: center;
   }
   
-  .sMi > .parts > .info > .sm > h1,
-  .sMi > .parts > .info > .sm > p{
-      text-align: center;
+  .sm > h1, .sm > p{
+    text-align: center;
   }
   
-  .sMi > .parts > div{
-      height: 100vh;
-      width: 50%;
+  /* Sobre mi, parte */
+
+  .me {
+    position: relative;
+    border-bottom: solid 3px var(--PColor);
+  }
+
+  .me > img {
+    height: 100%;
   }
   
-  
-  /* Sobre mi parte */
-  .sMi > .parts > .me{
-      overflow: hidden;
-      border-bottom: solid 3px var(--PColor);
+  .sm {
+    padding: 15%;
+    color: #fff;
   }
   
-  .sMi > .parts > .info,
-  .sMi > .parts > .me{
+  .sm > h1 {
+    border-top: solid 2px var(--PColor);
+    margin: auto;
+    margin-bottom: 10px;
+    width: fit-content;
+  }
+  
+  .otros > ul > li {
+    padding: 10px 0;
+    list-style: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  .otros > ul > li > p{
+    color: var(--PColor);
+    margin-left: 5px;
+  }
+
+  @media (max-width: 800px){
+    .sMi {
+      height: 100%;
+    }
+
+    .parts {
+      height: 100%;
+      flex-direction: column;
+    }
+
+    .parts > .info {
+      height: 20%;
+    }
+
+    .parts, .parts > div, .info > .sm {
       width: 100%;
-      height: 100%;
+    }
+
+    .me > img{
+      height: 50vh;
+    }
   }
-  
-  .sMi > .parts > .me > img{
-      height: 100%;
-  }
-  
-  .sMi > .parts > .me > .codeRep{
-      position: absolute;
-      font-size: 238pt;
-      right: 15%;
-  }
-  
-  .sMi > .parts > .info > .sm{
-      padding: 15%;
-      color: #fff;
-  }
-  
-  .sMi > .parts > .info > .sm > h1{
-      border-top: solid 2px var(--PColor);
-      margin: auto;
-      margin-bottom: 10px;
-      width: fit-content;
-  }
-  
-  .sMi > .parts > .info > .sm > .otros > ul > li{
-      padding: 10px 0;
-      list-style: none;
-      -moz-user-select: none;
-      -webkit-user-select: none;
-      user-select: none;
-  }
-  
-  .sMi > .parts > .info > .sm > .otros > ul > li > p{
-      color: var(--PColor);
-      margin-left: 5px;
+
+  .parts, .parts > div {
+    transition: all 0.5s ease-out;
   }
 </style>

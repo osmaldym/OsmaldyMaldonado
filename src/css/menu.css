@@ -6,7 +6,7 @@ nav, nav > ul{
 nav, 
 nav > ul,
 nav > .logos,
-nav > .logos > .iconMenu{
+.iconMenu{
     display: flex;
     align-items: center;
 }
@@ -15,7 +15,7 @@ nav > ul{
     justify-content: flex-end;
 }
 
-nav > .logos > .iconMenu,
+.iconMenu,
 nav > ul > li > .modo > span{
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -23,7 +23,12 @@ nav > ul > li > .modo > span{
 }
 
 /* Menu */
-nav{
+.imo {
+    top: 0;
+    left: 0;
+}
+
+nav, .imo {
     z-index: 99999;
     position: fixed;
 }
@@ -33,18 +38,20 @@ nav > .logos {
 }
 
 nav > .logos > a.router-link-exact-active > .imgCont,
-nav > .logos > .iconMenu{
+.iconMenu{
     width: 60px;
     height: 60px;
 }
 
-nav > .logos > .iconMenu {
+.iconMenu {
+    cursor: pointer;
     justify-content: center;
 }
 
-nav > .logos > .iconMenu > span{
+.iconMenu > span{
     color: var(--PColor);
     font-size: 42pt;
+    position: absolute;
 }
 
 nav > ul > li{
@@ -66,7 +73,7 @@ nav > ul > li > a.router-link-exact-active{
     cursor: pointer;
 }
 
-nav > .logos > .iconMenu:hover,
+.iconMenu:hover,
 nav > ul > li > a:hover,
 nav > ul > li > a.router-link-exact-active:hover,
 nav > ul > li > .modo:hover{
@@ -77,14 +84,14 @@ nav > ul > li > .modo > span:hover{
     color: var(--SColor);
 }
 
-nav > .logos > .iconMenu:hover > span,
+.iconMenu:hover > span,
 nav > ul > li > a:hover,
 nav > ul > li > a.router-link-exact-active:hover {
     color: #fff;
 }
 
 /* Todas las transiciones */
-nav > .logos > .iconMenu,
+.iconMenu,
 nav > ul > li > .modo > span,
 nav > ul > li > a,
 nav > ul > li > a.router-link-exact-active{

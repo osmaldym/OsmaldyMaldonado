@@ -100,6 +100,12 @@
         width: 50%;
     }
 
+    .valores, .nombre, .valores > .check {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     /* Parte de presentación */
     .contImg > img{
         height: 100%;
@@ -109,6 +115,8 @@
     .nombre {
         z-index: 999;
         position: absolute;
+
+        flex-direction: column;
 
         border: solid 3px var(--PColor);
         border-style: dashed;
@@ -196,12 +204,6 @@
     }
 
     /* Parte de los valores */
-    .valores, .valores > .check {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
     .valores {
         position: absolute;
         bottom: var(--top-nombre);
@@ -229,8 +231,9 @@
     /* Responsive */
     @media (max-width: 800px){
         .nombre {
-            left: 10%;
-            right: 10%;
+            top: 15px;
+            left: 25%;
+            right: 25%;
         }
 
         .valores {
