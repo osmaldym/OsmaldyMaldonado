@@ -28,29 +28,35 @@
 
 <style scoped>
   /* TODO */
-  .parts, .info, .otros > ul > li{
+  .parts, .info, .otros > ul > li, .me{
     position: relative;
     display: flex;
   }
   
-  .info{
+  .info, .me{
+    width: 50%;
     justify-content: center;
     align-items: center;
   }
   
   .sm > h1, .sm > p{
     text-align: center;
+    text-shadow: 0 0 5px var(--SColor);
   }
   
   /* Sobre mi, parte */
-
   .me {
-    position: relative;
-    border-bottom: solid 3px var(--PColor);
+    z-index: -1;
+    position: absolute;
+    right: 0;
+    height: 100%;
   }
 
   .me > img {
+    position: absolute;
+    right: 0;
     height: 100%;
+    border-bottom: solid 3px var(--PColor);
   }
   
   .sm {
@@ -92,12 +98,12 @@
       height: 20%;
     }
 
-    .parts, .parts > div, .info > .sm {
-      width: 100%;
+    .me, .me > img {
+      position: relative;
     }
 
-    .me > img{
-      height: 50vh;
+    .parts, .parts > div, .info > .sm, .me > img {
+      width: 100%;
     }
   }
 

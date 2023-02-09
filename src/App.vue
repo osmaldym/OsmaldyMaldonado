@@ -25,8 +25,12 @@
 <script>
     export default {
         name: 'App',
+        created () {
+            document.title = this.title
+        },
         data () {
             return {
+                title: 'Osmaldy Maldonado',
                 elems: [],
                 actualScroll: 0,
                 menu: null,
@@ -38,6 +42,7 @@
         },
         methods: {
             createNecesary(){
+                this.elems = document.querySelector('.content').childNodes
                 this.menu = document.querySelector('nav')
                 this.iconMenu = document.querySelector('.imo')
 
@@ -96,6 +101,7 @@
                     else y = y+yH
 
                     if (y <= yH){
+
                         if (elem.id != '') history.pushState(null, null, '#' + elem.id)
                         else history.pushState(null, null, '/') 
                         return

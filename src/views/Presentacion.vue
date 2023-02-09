@@ -98,6 +98,7 @@
     .frags, .contImg{
         height: 100vh;
         width: 50%;
+        overflow: hidden;
     }
 
     .valores, .nombre, .valores > .check {

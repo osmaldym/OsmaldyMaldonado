@@ -57,7 +57,7 @@
     --borderGen: 10px;
     --marginIT: 5px;
     --marginFormB: 10px;
-    --paddingRightGen: 15px;
+    --paddingRightGen: 10px;
   }
 
   /* Generales */
@@ -74,7 +74,7 @@
   }
 
   .basicos, .cDirecto, footer{
-    padding: 0 25px;
+    padding: 0 3%;
   }
 
   h1 {
@@ -102,7 +102,7 @@
 
   /* Parte de contactos basicos */
   .basicos > .b > span {
-    font-size: 32pt;
+    font-size: 28pt;
     -moz-user-select: none;
     -webkit-user-select: none;
     user-select: none;
@@ -191,19 +191,23 @@
   }
 
   /* Footer */
+  footer, footer > .redes {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--paddingRightGen);
+  }
+
   footer {
-    height: 300px;
     background-color: var(--PColor);
     overflow: hidden;
   }
 
   footer > .redes {
-    height: 80%;
     padding-top: var(--paddingRightGen);
   }
 
   footer > .redes > ul {
-    margin-top: var(--paddingRightGen);
     list-style: none;
     width: 100%;
     display: flex;
@@ -235,6 +239,12 @@
     color: #fff;
     font-size: 12pt;
     padding: 5px;
+  }
+
+  @media (max-width: 800px){
+    .contactos {
+      height: 100%;
+    }
   }
 
   /* Animaciones */

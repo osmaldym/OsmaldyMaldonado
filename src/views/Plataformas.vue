@@ -26,7 +26,6 @@
               </ul>
             </div>
           </div>
-
         </div>
         <div class="graphs">
           <div class="all">
@@ -177,13 +176,8 @@
 
 <style scoped>
   .plats {
-    --w-Of-PC-Pant: 500px;
-    --h-Of-PC-Pant: 300px;
-
-    --w-Of-Cel: 260px;
-    --h-Of-Cel: 500px;
     --cel-Cam-Tam: 15px;
-    --LOfCel: -130px;
+    --LOfCel: 3%;
 
     --size_p: 16pt;
 
@@ -275,14 +269,20 @@
   }
 
   .graphs {
-    align-items: center;
     width: 100%;
+    align-items: center;
     overflow: hidden;
   }
 
   .all {
-    position: absolute;
-    right: calc(25% + var(--LOfCel));
+    position: relative;
+    width: 100%;
+  }
+
+  .pcs {
+    gap: 25px;
+    display: flex;
+    align-items: center;
   }
 
   /* Todos los dispositivos */
@@ -336,29 +336,23 @@
     background-color: var(--PColor);
   }
 
-  /* Pantalla computador APP */
-  .app {
-    margin-bottom: 25px;
-    width: var(--w-Of-PC-Pant);
-    height: var(--h-Of-PC-Pant);
+  .app, .web {
+    width: 80vh;
+    height: 300px;
   }
 
-  .app > .pant{
+  /* Pantalla computador APP */
+  .app > .pant {
     height: calc(100% - 35px);
   }
 
-  .acciones{
+  .acciones {
     flex-direction: row-reverse;
     padding: var(--gen-padding);
   }
 
   /* Pantalla computador WEB */
-  .web {
-    width: var(--w-Of-PC-Pant);
-    height: var(--h-Of-PC-Pant);
-  }
-
-  .web > .pant{
+  .web > .pant {
     height: calc(100% - 35px * 2);
   }
 
@@ -368,7 +362,7 @@
     background-color: var(--PColor);
   }
 
-  .rep{
+  .rep {
     padding: 25px;
     background-color: #fff;
     border-radius: 15px;
@@ -379,8 +373,8 @@
     position: absolute;
     top: 10%;
     left: var(--LOfCel);
-    width: var(--w-Of-Cel);
-    height: var(--h-Of-Cel);
+    width: 260px;
+    height: 500px;
   }
 
   .notif, .botones{
@@ -416,9 +410,31 @@
     padding: 0 15px;
   }
 
+  @media (max-width: 1200px){
+    .app, .web {
+      width: 80%;
+    }
+  }
+
   @media (max-width: 800px){
-    .plats {
+    .plats, .divs {
       height: 100%;
+    }
+
+    .divs {
+      flex-direction: column;
+    }
+
+    .info {
+      width: 100%;
+    }
+
+    .info > ul {
+      margin-left: 5%;
+    }
+
+    .graphs {
+      height: 100vh;
     }
   }
 </style>
