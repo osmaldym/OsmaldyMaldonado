@@ -229,19 +229,6 @@
         color: var(--PColor);
     }
 
-    /* Responsive */
-    @media (max-width: 800px){
-        .nombre {
-            top: 15px;
-            left: 25%;
-            right: 25%;
-        }
-
-        .valores {
-            bottom: 50px;
-        }
-    }
-
     .frags > .izq:hover {
         transform: scale(1.1) rotate(-5deg);
     }
@@ -253,5 +240,18 @@
     .frags > .anim,
     .nombre {
         transition: all 0.3s ease-out;
+    }
+
+    /* Responsive */
+    @media (max-width: 800px){
+        .nombre {
+            top: 15px;
+            left: 25%;
+            right: 25%;
+        }
+
+        .valores {
+            bottom: 50px;
+        }
     }
 </style>

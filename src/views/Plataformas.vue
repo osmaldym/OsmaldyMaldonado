@@ -413,7 +413,7 @@
     }
 
     .graphs {
-      height: 80vh;
+      height: 85vh;
     }
   }
 </style>

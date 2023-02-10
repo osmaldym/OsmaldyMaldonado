@@ -142,4 +142,16 @@ nav > ul > li > a:hover {
         padding: 10px;
         width: 100%;
     }
+    
+    .iconMenu,
+    nav > .logos > .modo > span,
+    nav > ul > li > a {
+        transition: none 0s ease;
+    }
+
+    .iconMenu:hover,
+    nav > ul > li > a:hover,
+    nav > .logos > .modo:hover {
+        background-color: transparent;
+    }
 }

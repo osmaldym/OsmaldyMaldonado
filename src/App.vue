@@ -41,9 +41,7 @@
                 menu: null,
                 elems: [],
                 actualScroll: 0,
-                wScreen: 0,
-                darkMode: true,
-                
+                wScreen: 0
             }
         },
         mounted () {
@@ -61,6 +59,8 @@
                 this.menu = document.querySelector('nav')
                 this.iconMenu = document.querySelector('.imo')
                 this.wScreen = window.innerWidth
+
+                this.setModeDL()
 
                 if (this.wScreen > 800) this.presentarMenu()
                 else this.ocultarMenu()
@@ -140,23 +140,35 @@
 
             // Cambio de modo
             changeModeDL(){
-                this.rootElem.style.transition = 'all 0.8s ease-out'
+                console.log(this.$cookies.get('darkMode'));
+                if (this.getCookieDarkMode()){
+                    this.$cookies.set('darkMode', 'false', '2w')
+                    this.setModeDL()
+                } else {
+                    this.$cookies.set('darkMode', 'true', '2w')
+                    this.setModeDL()
+                }
+            },
 
-                if (this.darkMode){
-                    this.darkMode = false
-
+            setModeDL(){
+                if (this.getCookieDarkMode()){
                     this.showAndStack(this.computedDark, this.computedLight)
 
                     this.rootElem.style.setProperty('--SColor', '#ffffff')
                     this.rootElem.style.setProperty('--TXTColor', '#000000')
-
                 } else {
-                    this.darkMode = true
-
                     this.showAndStack(this.computedLight, this.computedDark)
 
                     this.rootElem.style.setProperty('--SColor', '#101010')
                     this.rootElem.style.setProperty('--TXTColor', '#ffffff')
+                }
+            },
+
+            getCookieDarkMode(){
+                if (this.$cookies.get('darkMode') != null && this.$cookies.get('darkMode') == 'true'){
+                    return true;
+                } else {
+                    return false;
                 }
             },
 
