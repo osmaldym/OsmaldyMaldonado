@@ -258,6 +258,8 @@
   }
 
   @media (max-width: 800px){
-    
+    button, .icono {
+      transition: all 0s ease-out;
+    }
   }
 </style>

@@ -13,7 +13,7 @@
           <p>¡E-Commerces, blogs, institucionales, portafolios, wikis y mas!</p>
 
           <div class="tecs">
-            <h1>Tecnologías que manejo</h1>
+            <h1>Tecnologías que manejo:</h1>
             <div class="logos">
               <ul>
                 <li class="imgCont"><div class="icono html"></div></li>

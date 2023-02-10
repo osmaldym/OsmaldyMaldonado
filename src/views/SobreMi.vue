@@ -4,7 +4,7 @@
         <div class="info">
           <div class="sm">
             <div class="titleSect">
-              <h1 class="link"><a href="#Sobre_mi">#</a></h1><h1 class="title">SOBRE MI</h1>
+              <h1 class="link"><a href="#Sobre_mi">#</a></h1><h1 class="title">SOBRE MI:</h1>
             </div>
             <p>Desde los 12 años me ha interesado la programacíon y desde esa edad, he estado creando y puliendo mis habilidades entorno a la programación, me gusta crear y estoy en constante aprendizaje sobre nuevas tecnologías.</p>
             <div class="otros">

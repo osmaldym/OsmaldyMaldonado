@@ -28,7 +28,7 @@ h1:not(.link) {
 h1.link > a {
    opacity: 0;
    text-decoration: none;
-   color: #fff;
+   color: var(--TXTColor);
 }
 
 h1.link:hover > a, .titleSect:hover > h1.link > a {
@@ -71,15 +71,15 @@ p {
    height: 100%;
 }
 
-@media (max-width: 800px){
-   h1.link > a {
-      opacity: 1;
-   }
-}
-
 /* Animaciones */
 h1.link,
 h1.link > a,
 .titleSect {
    transition: all 0.5s ease-out;
+}
+
+@media (max-width: 800px){
+   h1.link > a {
+      opacity: 1;
+   }
 }

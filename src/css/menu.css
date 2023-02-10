@@ -154,4 +154,8 @@ nav > ul > li > a:hover {
     nav > .logos > .modo:hover {
         background-color: transparent;
     }
+
+    .imo:hover > span {
+        color: var(--TXTColor);
+    }
 }
