@@ -2,7 +2,9 @@
     <div class="plats">
       <div class="divs">
         <div class="info">
-          <h1>¡Te puedo crear lo que te imagines!</h1>
+          <div class="titleSect">
+            <h1 class="link"><a href="#Plataformas">#</a></h1><h1>¡Te puedo crear lo que te imagines!</h1>
+          </div>
           <ul>
             <li>Aplicaciones moviles (Android - Java)</li>
             <li>Aplicaciones de escritorio</li>
@@ -13,7 +15,7 @@
           <div class="tecs">
             <h1>Tecnologías que manejo</h1>
             <div class="logos">
-              <ul @pointerdown="addMove">
+              <ul>
                 <li class="imgCont"><div class="icono html"></div></li>
                 <li class="imgCont"><div class="icono css"></div></li>
                 <li class="imgCont"><div class="icono js"></div></li>
@@ -123,6 +125,7 @@
 
         elem.style.transition = transition
       },
+      
       quitTransition(elem){ elem.style.transition = 'none 0 ease' },
 
       revLeft(elem){ // Revision de si ya la propiedad left tiene datos
@@ -135,41 +138,17 @@
         this.logosUl = document.querySelector('.logos > ul')
         this.restWidth = (this.logosUl.offsetWidth * -1) - (this.logos.offsetWidth * -1)
 
+        this.addTransition(this.logosUl)
+
         setInterval(() => {
           let left = this.revLeft(this.logosUl)
 
-          if (left > this.restWidth) left = left - 1
-          else {
-            this.addTransition(this.logosUl)
-            left = 120
-          }
+          if (left >= this.restWidth) left = left - 10
+          else left = 110
 
           this.logosUl.style.left = left + 'px'
-        }, 10)
+        }, 100);
       },
-
-      addMove(){
-        // Añadiendo listeners necesarios
-        this.logosUl.addEventListener('pointermove', this.elemMove)
-        this.logosUl.addEventListener('pointerup', this.remElemMove)
-        this.logosUl.addEventListener('pointerout', this.remElemMove)
-      },
-
-      elemMove(e){
-        this.preventAll(e)
-
-        // Estableciendo variables
-        let actualLeft = this.revLeft(this.logosUl) + e.movementX
-
-        console.log(actualLeft, this.logosUl.offsetWidth);
-
-        if (actualLeft > this.restWidth && actualLeft < 0) this.logosUl.style.left = actualLeft + 'px'
-      },
-
-      remElemMove(e){
-        this.preventAll(e)
-        this.logosUl.removeEventListener('pointermove', this.elemMove)
-      }
     }
   }
 </script>

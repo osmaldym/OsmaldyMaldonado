@@ -6,7 +6,10 @@
             <router-link to="/"><div class="imgCont"><img src="@/assets/logo.png" alt="Logo de Osmaldy Maldonado"></div></router-link>
         </div>
         <ul>
-            <li><div class="modo"><span class="material-symbols-outlined">dark_mode</span></div></li>
+            <li><div class="modo">
+                <span class="material-symbols-sharp light">light_mode</span>
+                <!-- <span class="material-symbols-sharp dark">dark_mode</span> -->
+            </div></li>
             <li><router-link to="/">Inicio</router-link></li>
             <li><router-link to="#Sobre_mi">Sobre mi</router-link></li>
             <li><router-link to="#Plataformas">Plataformas</router-link></li>
@@ -34,23 +37,28 @@
                 elems: [],
                 actualScroll: 0,
                 menu: null,
-                iconMenu: null
+                iconMenu: null,
+                wScreen: 0
             }
         },
         mounted () {
             this.createNecesary()
         },
         methods: {
+            // Creando y espcificando lo necesario
             createNecesary(){
                 this.elems = document.querySelector('.content').childNodes
                 this.menu = document.querySelector('nav')
                 this.iconMenu = document.querySelector('.imo')
+                this.wScreen = window.innerWidth
 
-                this.presentarMenu()
+                if (this.wScreen > 800) this.presentarMenu()
+                else this.ocultarMenu()
                 
                 window.addEventListener('scroll', this.addAll)
             },
 
+            // Añadiendo y espcificando lo necesario
             addAll(e){
                 e.preventDefault()
                 e.stopPropagation()
@@ -59,54 +67,64 @@
                 /* Añadiendo efecto de Menú por Scroll */
                 this.addMenuEffect()
 
-                /* Añadiendo cambio de URL por Scroll */
-                this.addChangeURL()
+                if (this.wScreen > 800) {
+                    /* Añadiendo cambio de URL por Scroll */
+                    this.addChangeURL()
+                }
             },
 
-            // Presentar y ocultar el menu, todos los metodos
+            // Metodo para presentar el menú y presentar su botón
             presentarMenu(){
                 this.presentar(this.menu)
                 this.ocultar(this.iconMenu)
             },
-
+            
+            // Metodo para ocultar el menú y presentar su boton
             ocultarMenu(){
                 this.ocultar(this.menu)
                 this.presentar(this.iconMenu)
             },
 
+            // Metodo para presentar un elemento (Menú)
             presentar(elem){
                 elem.style.top = '0'
+                elem.style.left = '0'
             },
 
+            // Metodo para ocultar un elemento (Menú)
             ocultar(elem){
                 elem.style.transition = 'all 0.3s ease-in-out'
-                elem.style.top = '-60px'
+
+                if (this.wScreen > 800) elem.style.top = '-60px'
+                else elem.style.left = '-100%'
             },
 
+            // Añadiendo efectos de ocultar/presentar menú
             addMenuEffect(){
                 let y = window.scrollY
 
-                if (y > this.actualScroll) this.ocultarMenu()
-                else this.presentarMenu()
+                if (this.wScreen > 800) {
+                    if (y > this.actualScroll) this.ocultarMenu()
+                    else this.presentarMenu()
+                }
 
                 this.actualScroll = y
             },
 
+            // Cambio de URL dependiendo de si el scroll está en el div
             addChangeURL(){
                 this.elems.forEach(elem => {
                     let y = elem.getBoundingClientRect().y,
                     yH = elem.offsetHeight
 
                     if (y <= 0) y = (y*-1)
-                    else y = y+yH
+                    else y = y + yH
 
                     if (y <= yH){
-
                         if (elem.id != '') history.pushState(null, null, '#' + elem.id)
                         else history.pushState(null, null, '/') 
                         return
                     }
-                
                 });
             }
         }

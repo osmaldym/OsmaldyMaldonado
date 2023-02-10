@@ -1,6 +1,8 @@
 <template>
     <div class="contactos">
-      <h1>Contactos</h1>
+      <div class="titleSect">
+        <h1 class="link"><a href="#Contactos">#</a></h1><h1 class="title">Contactos</h1>
+      </div>
       <div class="basicos">
         <div class="b num"><span class="material-symbols-sharp">call</span><p>+1 809-370-1462</p></div>
         <div class="b mail"><span class="material-symbols-sharp">mail</span><p>osmaldy11checo@gmail.com</p></div>
@@ -77,7 +79,7 @@
     padding: 0 3%;
   }
 
-  h1 {
+  h1:not(.title) {
     color: #fff;
   }
 
@@ -95,9 +97,10 @@
     flex-direction: column;
   }
 
-  .contactos > h1 {
+  .titleSect {
     margin-top: 10px;
     text-align: center;
+    justify-content: center;
   }
 
   /* Parte de contactos basicos */
@@ -242,9 +245,7 @@
   }
 
   @media (max-width: 800px){
-    .contactos {
-      height: 100%;
-    }
+    
   }
 
   /* Animaciones */
