@@ -38,6 +38,7 @@ nav > .logos {
 }
 
 nav > .logos > a.router-link-exact-active > .imgCont,
+nav > .logos > .modo,
 .iconMenu{
     width: 60px;
     height: 60px;
@@ -59,10 +60,28 @@ nav > ul > li{
     list-style: none;
 }
 
-nav > ul > li > .modo > span{
+nav > .logos > .modo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+nav > .logos > .modo > span{
     padding: 10px 15px;
     font-size: 28pt;
     color: var(--PColor);
+    position: absolute;
+    cursor: pointer;
+}
+
+nav > .logos > .modo > .dark {
+    z-index: 0;
+    opacity: 0;
+}
+
+nav > .logos > .modo > .light {
+    z-index: 1;
 }
 
 nav > ul > li > a.router-link-exact-active{
@@ -71,6 +90,28 @@ nav > ul > li > a.router-link-exact-active{
     text-decoration: none;
     padding: 10px 15px;
     cursor: pointer;
+}
+
+/* Todas las transiciones */
+.iconMenu,
+nav > .logos .modo > span,
+nav > ul > li > a{
+    transition: all 0.3s ease-in-out;
+}
+
+.iconMenu:hover,
+nav > ul > li > a:hover,
+nav > .logos > .modo:hover{
+    background-color: var(--PColor);
+}
+
+nav > .logos > .modo > span:hover{
+    color: var(--SColor);
+}
+
+.iconMenu:hover > span,
+nav > ul > li > a:hover {
+    color: #fff;
 }
 
 @media (max-width: 800px){
@@ -101,29 +142,4 @@ nav > ul > li > a.router-link-exact-active{
         padding: 10px;
         width: 100%;
     }
-}
-
-/* Todas las transiciones */
-.iconMenu,
-nav > ul > li > .modo > span,
-nav > ul > li > a,
-nav > ul > li > a.router-link-exact-active{
-    transition: all 0.3s ease-in-out;
-}
-
-.iconMenu:hover,
-nav > ul > li > a:hover,
-nav > ul > li > a.router-link-exact-active:hover,
-nav > ul > li > .modo:hover{
-    background-color: var(--PColor);
-}
-
-nav > ul > li > .modo > span:hover{
-    color: var(--SColor);
-}
-
-.iconMenu:hover > span,
-nav > ul > li > a:hover,
-nav > ul > li > a.router-link-exact-active:hover {
-    color: #fff;
 }

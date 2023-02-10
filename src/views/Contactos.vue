@@ -70,7 +70,7 @@
 
   button {
     background-color: initial;
-    color: #fff;
+    color: var(--TXTColor);
     padding: 10px;
     cursor: pointer;
   }
@@ -80,7 +80,7 @@
   }
 
   h1:not(.title) {
-    color: #fff;
+    color: var(--TXTColor);
   }
 
   p {
@@ -114,7 +114,7 @@
   }
 
   .basicos > .b {
-    color: #fff;
+    color: var(--TXTColor);
     align-items: center;
     display: flex;
   }
@@ -161,7 +161,7 @@
   form > fieldset > input,
   form > fieldset > textarea {
     width: 100%;
-    color: #fff;
+    color: var(--TXTColor);
     background-color: var(--PColor);
     padding: 10px;
   }
@@ -239,7 +239,7 @@
 
   footer > .copy > p {
     text-align: center;
-    color: #fff;
+    color: var(--TXTColor);
     font-size: 12pt;
     padding: 5px;
   }
@@ -254,7 +254,7 @@
   }
   
   footer > .redes > ul > li > .icono:hover {
-    background-color: #fff;
+    background-color: var(--TXTColor);
   }
 
   button, .icono {

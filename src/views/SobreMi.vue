@@ -63,7 +63,7 @@
   
   .sm {
     padding: 15%;
-    color: #fff;
+    color: var(--TXTColor);
   }
   
   .titleSect {

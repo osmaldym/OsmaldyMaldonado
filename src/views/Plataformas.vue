@@ -184,7 +184,7 @@
   }
 
   ul {
-    color: #fff;
+    color: var(--TXTColor);
   }
 
   span {
@@ -413,7 +413,7 @@
     }
 
     .graphs {
-      height: 100vh;
+      height: 80vh;
     }
   }
 </style>

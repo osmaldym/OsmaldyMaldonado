@@ -4,12 +4,12 @@
         <div class="logos">
             <div class="iconMenu" @click="ocultarMenu()"><span class="material-symbols-outlined">menu</span></div>
             <router-link to="/"><div class="imgCont"><img src="@/assets/logo.png" alt="Logo de Osmaldy Maldonado"></div></router-link>
+            <div class="modo">
+                    <span class="material-symbols-sharp light" @click="changeModeDL">light_mode</span>
+                    <span class="material-symbols-sharp dark" @click="changeModeDL">dark_mode</span>
+                </div>
         </div>
         <ul>
-            <li><div class="modo">
-                <span class="material-symbols-sharp light">light_mode</span>
-                <!-- <span class="material-symbols-sharp dark">dark_mode</span> -->
-            </div></li>
             <li><router-link to="/">Inicio</router-link></li>
             <li><router-link to="#Sobre_mi">Sobre mi</router-link></li>
             <li><router-link to="#Plataformas">Plataformas</router-link></li>
@@ -34,11 +34,16 @@
         data () {
             return {
                 title: 'Osmaldy Maldonado',
+                computedDark: null,
+                computedLight: null,
+                rootElem: null,
+                iconMenu: null,
+                menu: null,
                 elems: [],
                 actualScroll: 0,
-                menu: null,
-                iconMenu: null,
-                wScreen: 0
+                wScreen: 0,
+                darkMode: true,
+                
             }
         },
         mounted () {
@@ -47,6 +52,11 @@
         methods: {
             // Creando y espcificando lo necesario
             createNecesary(){
+                this.rootElem = document.documentElement
+
+                this.computedLight = document.querySelector('nav > .logos > .modo > .light')
+                this.computedDark = document.querySelector('nav > .logos > .modo > .dark')
+
                 this.elems = document.querySelector('.content').childNodes
                 this.menu = document.querySelector('nav')
                 this.iconMenu = document.querySelector('.imo')
@@ -126,6 +136,36 @@
                         return
                     }
                 });
+            },
+
+            // Cambio de modo
+            changeModeDL(){
+                this.rootElem.style.transition = 'all 0.8s ease-out'
+
+                if (this.darkMode){
+                    this.darkMode = false
+
+                    this.showAndStack(this.computedDark, this.computedLight)
+
+                    this.rootElem.style.setProperty('--SColor', '#ffffff')
+                    this.rootElem.style.setProperty('--TXTColor', '#000000')
+
+                } else {
+                    this.darkMode = true
+
+                    this.showAndStack(this.computedLight, this.computedDark)
+
+                    this.rootElem.style.setProperty('--SColor', '#101010')
+                    this.rootElem.style.setProperty('--TXTColor', '#ffffff')
+                }
+            },
+
+            showAndStack(elem1, elem2){
+                elem1.style.opacity = '1'
+                elem1.style.zIndex = '1'
+
+                elem2.style.opacity = '0'
+                elem2.style.zIndex = '0'
             }
         }
     }
