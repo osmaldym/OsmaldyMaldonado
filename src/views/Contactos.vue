@@ -9,14 +9,15 @@
       </div>
       <div class="cDirecto">
         <h1>Contacto <span>directo</span></h1>
-        <form action="#" method="post">
+        <form v-on:submit="enviarEmail">
           <fieldset>
-            <input type="text" placeholder="Nombre"/>
-            <input type="text" placeholder="Email"/>
+            <legend><!--Vacío porque xd--></legend>
+            <input name="name" type="text" placeholder="Nombre"/>
+            <input name="email" type="email" pattern="+@gmail.com" placeholder="Email"/>
             <button type="submit">Enviar</button>
-          </fieldset>
+            </fieldset>
           <fieldset>
-            <textarea placeholder="Mensaje"></textarea>
+            <textarea name="message" placeholder="Mensaje"></textarea>
           </fieldset>
         </form>
 
@@ -44,11 +45,73 @@
 </template>
 
 <script>
+  import emailjs from 'emailjs-com'
+
   export default {
     name: 'PageContactos',
+    data () {
+      return {
+        inputs: [],
+        name: '',
+        email: '',
+        message: ''
+      }
+    },
+    mounted () {
+      this.loadAll()
+    },
     methods: {
+      loadAll(){
+        this.inputs = document.querySelectorAll('form > fieldset > input')
+
+        this.addAllValuesForm()
+      },
+
       openPage(url){
         window.open('https://' + url)
+      },
+
+      addAllValuesForm(){
+        let nombreC = this.$cookies.get('nombre'),
+        emailC = this.$cookies.get('email')
+
+        if (nombreC != null && emailC != null){
+          this.inputs[0].value = nombreC
+          this.inputs[1].value = emailC
+        }
+      },
+
+      setAllValuesCookies(){
+        this.$cookies.set('nombre', this.inputs[0].value, '1w')
+        this.$cookies.set('email', this.inputs[1].value, '1w')
+      },
+
+      enviarEmail(){
+        try {
+          this.setAllValuesCookies()
+          
+          emailjs.sendForm(
+            "gmail",
+            "cd_om",
+            "form",
+            "cuFIa5BMYmlTuJ2o-",
+            {
+              name: this.name,
+              email: this.email,
+              message: this.message
+            }
+          )
+
+          alert('Se ha enviado el email correctamente, gracias por contactarme 😀')
+        } catch (error) {
+          alert(error)
+        }
+
+        this.addAllValuesForm()
+
+        this.name = ''
+        this.email = ''
+        this.message = ''
       }
     }
   }
