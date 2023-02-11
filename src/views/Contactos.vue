@@ -20,10 +20,6 @@
             <textarea name="message" placeholder="Mensaje"></textarea>
           </fieldset>
         </form>
-
-        <div class="dCV">
-          <button><span class="material-symbols-sharp">attach_file</span> Descargar CV</button>
-        </div>
       </div>
 
     <footer>
@@ -113,7 +109,7 @@
         this.email = ''
         this.message = ''
       }
-    }
+    },
   }
 </script>
 
@@ -188,7 +184,7 @@
     flex-direction: column;
   }
 
-  .cDirecto, .dCV, .dCV button, form > fieldset{
+  .cDirecto, form > fieldset{
     display: flex;
     justify-content: center;
   }
@@ -239,21 +235,6 @@
     height: 100%;
     border-bottom-right-radius: var(--borderGen);
     border-top-right-radius: var(--borderGen);
-  }
-
-  .dCV {
-    margin-top: 25px;
-  }
-
-  .dCV button {
-    align-items: center;
-    font-size: 18pt;
-    padding: 15px;
-  }
-
-  .dCV button span {
-    margin-right: 5px;
-    font-size: 22pt;
   }
 
   /* Footer */
