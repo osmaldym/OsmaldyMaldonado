@@ -1,29 +1,34 @@
 <template>
+    <!-- Parte de contactos -->
     <div class="contactos">
+      <!-- Titulo -->
       <div class="titleSect">
         <h1 class="link"><a href="#Contactos">#</a></h1><h1 class="title">Contactos</h1>
       </div>
+      <!-- Presentacion de informacion adsequible (número telefónico, y gmail) -->
       <div class="basicos">
         <div class="b num"><span class="material-symbols-sharp">call</span><p>+1 809-370-1462</p></div>
         <div class="b mail"><span class="material-symbols-sharp">mail</span><p>osmaldy11checo@gmail.com</p></div>
       </div>
+      <!-- "Formulario" para enviar un correo electronico desde la misma web -->
       <div class="cDirecto">
         <h1>Contacto <span>directo</span></h1>
         <form v-on:submit="enviarEmail">
           <fieldset>
-            <legend><!--Vacío porque xd--></legend>
-            <input name="name" type="text" placeholder="Nombre"/>
-            <input name="email" type="email" pattern="+@gmail.com" placeholder="Email"/>
+            <legend> <!--Vacío porque xd--> </legend>
+            <input name="name" type="text" pattern="[^0-9_ ]{1,}|[^0-9_ ]{1,}[ ][^0-9_ ]{1,}" placeholder="Nombre" minlength="4" maxlength="50" required/>
+            <input name="email" type="email" pattern="[^0-9_ ]{1,}|+@gmail.com" placeholder="Email" minlength="12" required/>
             <button type="submit">Enviar</button>
             </fieldset>
           <fieldset>
-            <textarea name="message" placeholder="Mensaje"></textarea>
+            <textarea name="message" placeholder="Mensaje" minlength="4" maxlength="3000" required></textarea>
           </fieldset>
         </form>
       </div>
 
-    <footer>
-        <div class="redes">
+      <!-- Footer con demas redes y etc... -->
+      <footer>
+          <div class="redes">
             <h1>Redes <span>sociales</span></h1>
             <ul>
               <li class="imgCont"><div @click="openPage('linkedin.com/in/osmaldy-maldonado-6b4950247/')" class="icono link"></div></li>
@@ -32,41 +37,47 @@
               <li class="imgCont"><div @click="openPage('twitter.com/Osmaldy_m')" class="icono tw"></div></li>
               <li class="imgCont"><div @click="openPage('instagram.com/osmaldym')" class="icono ig"></div></li>
             </ul>
-        </div>
-        <div class="copy">
-            <p>Copyright © Todos los derechos reservados - 2022</p>
-        </div>
-    </footer>
+          </div>
+          <div class="copy">
+            <p> ¿Bro?, ¿como llegaste a ver esto? 🤨</p>
+          </div>
+      </footer>
     </div>
 </template>
 
 <script>
-  import emailjs from 'emailjs-com'
+  // Importaciones
+  // import emailjs from 'emailjs-com'
 
   export default {
     name: 'PageContactos',
-    data () {
+    data () { // Variables
       return {
         inputs: [],
+        copyText: null,
         name: '',
         email: '',
         message: ''
       }
     },
-    mounted () {
-      this.loadAll()
+    mounted () { // Onload
+      this.loadAll(),
+      this.setCopyAndYear()
     },
     methods: {
+      // Metodo de onload
       loadAll(){
         this.inputs = document.querySelectorAll('form > fieldset > input')
-
+        this.copyText = document.querySelector('footer > .copy > p')
         this.addAllValuesForm()
       },
 
+      // Metodo para automatizar la apertura de un link
       openPage(url){
         window.open('https://' + url)
       },
 
+      // Añadiendo las cookies del sitio a inputs del form
       addAllValuesForm(){
         let nombreC = this.$cookies.get('nombre'),
         emailC = this.$cookies.get('email')
@@ -77,26 +88,28 @@
         }
       },
 
+      // Añadiendo cookies al sitio
       setAllValuesCookies(){
         this.$cookies.set('nombre', this.inputs[0].value, '1w')
         this.$cookies.set('email', this.inputs[1].value, '1w')
       },
 
+      // Metodo para envío de emails
       enviarEmail(){
         try {
           this.setAllValuesCookies()
           
-          emailjs.sendForm(
-            "gmail",
-            "cd_om",
-            "form",
-            "cuFIa5BMYmlTuJ2o-",
-            {
-              name: this.name,
-              email: this.email,
-              message: this.message
-            }
-          )
+          // emailjs.sendForm(
+          //   "gmail",
+          //   "cd_om",
+          //   "form",
+          //   "cuFIa5BMYmlTuJ2o-",
+          //   {
+          //     name: this.name,
+          //     email: this.email,
+          //     message: this.message
+          //   }
+          // )
 
           alert('Se ha enviado el email correctamente, gracias por contactarme 😀')
         } catch (error) {
@@ -108,12 +121,18 @@
         this.name = ''
         this.email = ''
         this.message = ''
+      },
+
+      // Añadiendo dinámicamente el copyright y el año
+      setCopyAndYear(){
+        this.copyText.innerText = 'Copyright © Todos los derechos reservados - ' + new Date().getFullYear()
       }
     },
   }
 </script>
 
 <style scoped>
+  /* All */
   .contactos {
     --borderGen: 10px;
     --marginIT: 5px;
@@ -301,6 +320,7 @@
     transition: all 0.3s ease-out;
   }
 
+  /* Responsive */
   @media (max-width: 800px){
     button, .icono {
       transition: all 0s ease-out;

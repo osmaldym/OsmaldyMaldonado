@@ -1,6 +1,9 @@
 <template>
+    <!-- Parte de plataformas -->
     <div class="plats">
+      <!-- Divisiones de información y tecnologías -->
       <div class="divs">
+        <!-- Información -->
         <div class="info">
           <div class="titleSect">
             <h1 class="link"><a href="#Plataformas">#</a></h1><h1>¡Te puedo crear lo que te imagines!</h1>
@@ -12,6 +15,7 @@
           </ul>
           <p>¡E-Commerces, blogs, institucionales, portafolios, wikis y mas!</p>
 
+          <!-- Tecnologías -->
           <div class="tecs">
             <h1>Tecnologías que manejo:</h1>
             <div class="logos">
@@ -29,9 +33,13 @@
             </div>
           </div>
         </div>
+        <!-- Parte de presentacion de dispositivos -->
         <div class="graphs">
+          <!-- Contenedor de todo -->
           <div class="all">
+            <!-- Compuutadoras (Web y App) -->
             <div class="pcs">
+              <!-- Aplicación -->
               <div class="app">
                 <div class="acciones">
                   <span class="material-symbols-outlined">close</span>
@@ -50,6 +58,7 @@
                 </div>
               </div>
 
+              <!-- WEB -->
               <div class="web">
                 <div class="acciones">
                   <span class="material-symbols-outlined">close</span>
@@ -65,6 +74,7 @@
               </div>
             </div>
 
+            <!-- Celular -->
             <div class="cel">
               <div class="notif">
                 <div class="l"><p>12:00</p></div>
@@ -96,43 +106,40 @@
 <script>
   export default {
     name: 'PartPlats',
-    data () {
+    data () { // Variables
       return {
         logos: null,
         logosUl: null,
         restWidth: 0
       }
     },
-    mounted () { // On load
+    mounted () { // Onload
       this.obtYDesplazar()
     },
     methods: {
+      // Todos los prevent
       preventAll(e){
-        // Todos los prevent
         e.preventDefault()
         e.stopPropagation()
         e.stopImmediatePropagation()
       },
 
-      addTransition(elem, ...args){
-        let transition = 'all '
-
-        if (args[0] != null || args[0] != undefined) transition += args[0] + ' '
-        else transition += '0.5s '
-
-        if (args[1] != null || args[1] != undefined) transition += args[1]
-        else transition += 'ease-out'
-
-        elem.style.transition = transition
-      },
+      // Metodo para añadir transición automáticamente
+      addTransition(elem){ elem.style.transition = 'all 0.5s ease-out' },
       
+      // Quitar transición automáticamente
       quitTransition(elem){ elem.style.transition = 'none 0 ease' },
 
-      revLeft(elem){ // Revision de si ya la propiedad left tiene datos
+      // Revision de si ya la propiedad left tiene datos
+      revLeft(elem){ 
         if (elem.style.left != '') return parseInt(elem.style.left.replace('px'))
         return 0
       },
 
+      /*
+       Obteniendo elementos de las tecnologías que sé, y moviendolas como un
+       slider
+      */
       obtYDesplazar(){
         this.logos = document.querySelector('.tecs > .logos')
         this.logosUl = document.querySelector('.logos > ul')
@@ -154,6 +161,7 @@
 </script>
 
 <style scoped>
+  /* All */
   .plats {
     --cel-Cam-Tam: 15px;
     --LOfCel: 3%;
@@ -389,6 +397,7 @@
     padding: 0 15px;
   }
 
+  /* Responsive */
   @media (max-width: 1200px){
     .app, .web {
       width: 80%;

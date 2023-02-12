@@ -1,4 +1,4 @@
-/* Todo */
+/* All */
 nav, nav > ul{
     width: 100%;
 }
@@ -114,6 +114,7 @@ nav > ul > li > a:hover {
     color: #fff;
 }
 
+/* Responsive */
 @media (max-width: 800px){
     nav {
         background-color: rgba(0, 0, 0, 0.9);

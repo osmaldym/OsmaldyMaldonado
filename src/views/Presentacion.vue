@@ -1,37 +1,42 @@
 <template>
-  <div class="presentacion">
-      <div class="nombre">
-        <h1>FullStack Developer</h1>
-        <h1>Osmaldy Maldonado</h1>
-      </div>
+    <!-- Parte de presentación -->
+    <div class="presentacion">
+        <!-- Presentación de mi nombre -->
+        <div class="nombre">
+            <h1>FullStack Developer</h1>
+            <h1>Osmaldy Maldonado</h1>
+        </div>
 
-      <div class="frags">
-        <img class="m cabeza" src="../assets/fragments/cabeza.svg">
-        <img class="anim der ojo" @click="setValor('Responsabilidad')" src="../assets/fragments/ojo.svg">
-        <img class="anim izq eja" @click="setValor('Dedicación')" src="../assets/fragments/eja.svg">
-        <img class="anim m izq nariz" @click="setValor('Cercanía')" src="../assets/fragments/nariz.svg">
-        <img class="anim m der boca" @click="setValor('Adaptibilidad')" src="../assets/fragments/boca.svg">
-        <img class="lineaCabeza" src="../assets/fragments/lineaCabeza.svg">
-        <img class="cuelloC" src="../assets/fragments/cuelloC.svg">
-        <img class="m cuelloCam" src="../assets/fragments/cuelloCam.svg">
-      </div>
-      <div class="contImg">
-        <img src="../assets/o1_m.png" alt="">
-      </div>
+        <!-- Fragmentos de cara -->
+        <div class="frags">
+            <img class="m cabeza" src="../assets/fragments/cabeza.svg">
+            <img class="anim der ojo" @click="setValor('Responsabilidad')" src="../assets/fragments/ojo.svg">
+            <img class="anim izq eja" @click="setValor('Dedicación')" src="../assets/fragments/eja.svg">
+            <img class="anim m izq nariz" @click="setValor('Cercanía')" src="../assets/fragments/nariz.svg">
+            <img class="anim m der boca" @click="setValor('Adaptibilidad')" src="../assets/fragments/boca.svg">
+            <img class="lineaCabeza" src="../assets/fragments/lineaCabeza.svg">
+            <img class="cuelloC" src="../assets/fragments/cuelloC.svg">
+            <img class="m cuelloCam" src="../assets/fragments/cuelloCam.svg">
+        </div>
+        <!-- Contenedor de imagen (Mitad) -->
+        <div class="contImg">
+            <img src="../assets/o1_m.png" alt="">
+        </div>
 
-      <div class="valores">
-        <h1>{{ this.valor }}</h1>
-        <div class="check">
-            <span class="material-symbols-sharp">done</span>
-        </div> 
-      </div>
+        <!-- Valores a presentar al tocar fragmentos -->
+        <div class="valores">
+            <h1>{{ this.valor }}</h1>
+            <div class="check">
+                <span class="material-symbols-sharp">done</span>
+            </div> 
+        </div>
   </div>
 </template>
 
 <script>
   export default {
     name: 'PartPresentacion',
-    data () {
+    data () { // Variables
         return {
             allFrags: [],
             valoresCont: null,
@@ -39,11 +44,11 @@
             valor: 'Contratame por favor. Necesito dinero 🙏🏻'
         }
     },
-    mounted () {
+    mounted () { // Onload
         this.getElemsAndAnim()
     },
     methods: {
-        // Metodo de onload
+        // Metodo de onload para obtener elementos y animarlos
         getElemsAndAnim(){
             this.allFrags = document.querySelector('.presentacion > .frags').childNodes
             this.valoresCont = document.querySelector('.presentacion > .valores')
@@ -87,7 +92,7 @@
 </script>
 
 <style scoped>
-    /* Todo */
+    /* All */
     .presentacion {
         --top-nombre: 15%;
         --left-nombre: 5%;

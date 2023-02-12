@@ -1,11 +1,15 @@
-// Firebase SDK's
+// Importaciones de firebase SDK's
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
+// Importaciones necesarias de Vue.js
 import { createApp } from 'vue'
 import cookies from 'vue-cookies'
 import App from './App.vue'
 import router from './router'
+
+// Renderizando App
+createApp(App).use(router).use(cookies).mount('#app')
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -21,8 +25,3 @@ const firebaseConfig = {
 
 // Initialize Firebase
 getAnalytics(initializeApp(firebaseConfig));
-
-createApp(App)
-.use(router)
-.use(cookies)
-.mount('#app')

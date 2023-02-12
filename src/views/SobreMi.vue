@@ -1,6 +1,9 @@
 <template>
+    <!-- Parte de sobre mi -->
     <div class="sMi">
+      <!-- Divisiones -->
       <div class="parts">
+        <!-- Información sobre mí -->
         <div class="info">
           <div class="sm">
             <div class="titleSect">
@@ -15,6 +18,7 @@
             </div>
           </div>
         </div>
+        <!-- Imagen completa de mí -->
         <div class="me">
           <img src="../assets/o2.png" alt="Imagen de Osmaldy Maldonado">
         </div>
@@ -29,7 +33,7 @@
 </script>
 
 <style scoped>
-  /* TODO */
+  /* All */
   .parts, .info, .otros > ul > li, .me{
     position: relative;
     display: flex;
@@ -89,6 +93,7 @@
     margin-left: 5px;
   }
 
+  /* Responsive */
   @media (max-width: 800px){
     .sMi {
       height: 100%;
