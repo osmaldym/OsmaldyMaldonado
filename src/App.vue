@@ -3,11 +3,11 @@
     <nav>
         <div class="logos">
             <div class="iconMenu" @click="ocultarMenu()"><span class="material-symbols-outlined">menu</span></div>
-            <router-link to="/"><div class="imgCont"><img src="@/assets/logo.png" alt="Logo de Osmaldy Maldonado"></div></router-link>
+            <div class="imgCont" onclick="location.href = '/'"><img src="@/assets/logo.png" alt="Logo de Osmaldy Maldonado"></div>
             <div class="modo">
-                    <span class="material-symbols-sharp light" @click="changeModeDL">light_mode</span>
-                    <span class="material-symbols-sharp dark" @click="changeModeDL">dark_mode</span>
-                </div>
+                <span class="material-symbols-sharp light" @click="changeModeDL">light_mode</span>
+                <span class="material-symbols-sharp dark" @click="changeModeDL">dark_mode</span>
+            </div>
         </div>
         <ul>
             <li><router-link to="/">Inicio</router-link></li>
@@ -19,9 +19,9 @@
 
     <div class="content">
         <router-view />
-        <router-view name="SobreMi" id="Sobre_mi"/>
-        <router-view name="PartPlats" id="Plataformas"/>
-        <router-view name="Contactos" id="Contactos"/>
+        <router-view name="SobreMi"/>
+        <router-view name="PartPlats"/>
+        <router-view name="Contactos"/>
     </div>
 </template>
 
@@ -56,6 +56,7 @@
                 this.computedDark = document.querySelector('nav > .logos > .modo > .dark')
 
                 this.elems = document.querySelector('.content').childNodes
+
                 this.menu = document.querySelector('nav')
                 this.iconMenu = document.querySelector('.imo')
                 this.wScreen = window.innerWidth
@@ -124,16 +125,18 @@
             // Cambio de URL dependiendo de si el scroll está en el div
             addChangeURL(){
                 this.elems.forEach(elem => {
-                    let y = elem.getBoundingClientRect().y,
-                    yH = elem.offsetHeight
+                    if (elem.localName == 'div'){
+                        let y = elem.getBoundingClientRect().y,
+                        yH = elem.offsetHeight
 
-                    if (y <= 0) y = (y*-1)
-                    else y = y + yH
+                        if (y <= 0) y = (y*-1)
+                        else y = y + yH
 
-                    if (y <= yH){
-                        if (elem.id != '') history.pushState(null, null, '#' + elem.id)
-                        else history.pushState(null, null, '/') 
-                        return
+                        if (y <= yH){
+                            if (elem.id != '') history.pushState(null, null, '#' + elem.id)
+                            else history.pushState(null, null, '/') 
+                            return
+                        }
                     }
                 });
             },
@@ -165,11 +168,9 @@
             },
 
             getCookieDarkMode(){
-                if (this.$cookies.get('darkMode') != null && this.$cookies.get('darkMode') == 'true'){
-                    return true;
-                } else {
-                    return false;
-                }
+                if (this.$cookies.get('darkMode') != null &&
+                    this.$cookies.get('darkMode') == 'true') return true;
+                else return false;
             },
 
             showAndStack(elem1, elem2){

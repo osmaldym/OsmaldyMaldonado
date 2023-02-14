@@ -1,6 +1,6 @@
 <template>
     <!-- Parte de plataformas -->
-    <div class="plats">
+    <div class="plats" id="Plataformas">
       <!-- Divisiones de información y tecnologías -->
       <div class="divs">
         <!-- Información -->
@@ -253,6 +253,10 @@
   .info {
     width: 60%;
     padding: 5%;
+  }
+
+  .info > p {
+    font-weight: bold;
   }
 
   .graphs {

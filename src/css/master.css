@@ -57,6 +57,28 @@ p {
    gap: 15px;
    align-items: center;
 }
+/* Cajas con bordes separados */
+.dashedBorder {
+   background: 
+      linear-gradient(90deg,  var(--PColor) 50%, transparent 0) repeat-x,
+      linear-gradient(90deg,  var(--PColor) 50%, transparent 0) repeat-x,
+      linear-gradient(0deg, var(--PColor) 50%, transparent 0) repeat-y,
+      linear-gradient(0deg, var(--PColor) 50%, transparent 0) repeat-y;
+
+   background-size: 
+      10px 4px,
+      10px 4px,
+      4px 10px,
+      4px 10px;
+   
+   background-position: 
+      0 0,
+      0 100%,
+      0 0,
+      100% 0;
+
+   animation: dashedBorderEffect 10s infinite linear;
+}
 
 /* Todos los contenedores de todas las imágenes */
 .imgCont{
@@ -77,6 +99,12 @@ h1.link,
 h1.link > a,
 .titleSect {
    transition: all 0.5s ease-out;
+}
+
+@keyframes dashedBorderEffect {
+   0% { background-position: 100% 0, -100% 100%, 0 -100%, 100% 100%; }
+
+   100% { background-position: 4px 0, -4px 100%, 0 -4px, 100% 4px; }
 }
 
 /* Responsive */

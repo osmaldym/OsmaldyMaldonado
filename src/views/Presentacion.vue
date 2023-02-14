@@ -2,9 +2,11 @@
     <!-- Parte de presentación -->
     <div class="presentacion">
         <!-- Presentación de mi nombre -->
-        <div class="nombre">
-            <h1>FullStack Developer</h1>
-            <h1>Osmaldy Maldonado</h1>
+        <div class="nombreCont dashedBorder">
+            <div class="nombre">
+                <h1>FullStack Developer</h1>
+                <h1>Osmaldy Maldonado</h1>
+            </div>
         </div>
 
         <!-- Fragmentos de cara -->
@@ -39,6 +41,8 @@
     data () { // Variables
         return {
             allFrags: [],
+            anims: [],
+            timeOutAnim: null,
             valoresCont: null,
             hideValor: null,
             valor: 'Contratame por favor. Necesito dinero 🙏🏻'
@@ -50,23 +54,45 @@
     methods: {
         // Metodo de onload para obtener elementos y animarlos
         getElemsAndAnim(){
-            this.allFrags = document.querySelector('.presentacion > .frags').childNodes
-            this.valoresCont = document.querySelector('.presentacion > .valores')
+            // Set time out para añadir los transition desde css y no desde js
+            setTimeout(() => {
+                this.allFrags = document.querySelector('.presentacion > .frags').childNodes
+                this.valoresCont = document.querySelector('.presentacion > .valores')
 
-            this.valoresCont.style.opacity = '0'
+                this.valoresCont.className += ' tall'
 
-            this.allFrags.forEach((elem) => this.animFrag(elem));
+                this.allFrags.forEach((elem) => this.animFrag(elem));
+                this.alertarUsuarioFrags();
+            }, 50);
+        },
+
+        // Metodo para alertar que se puede tocar un elemento
+        alertarUsuarioFrags(){
+            let touch = this.$cookies.get('touchAnimFrags')
+
+            this.allFrags.forEach(elem => {
+                if (!elem.className.includes('tall')) elem.className += ' tall';
+
+                if (elem.className.includes('anim')){
+                    if (touch == 'true') elem.className = elem.className.replace(' pulsar', '')
+                    else elem.className += ' pulsar'
+                }
+            })
         },
 
         // Poniendole valor etico, presentandolo y ocultandolo
         setValor(valor){
-            this.valoresCont.style.transition = 'all 0.8s ease-out'
             this.valor = valor
             this.valoresCont.style.opacity = '1'
             
             clearTimeout(this.hideValor)
 
-            this.hideValor = setTimeout(() => {this.valoresCont.style.opacity = '0'}, 3000)
+            this.hideValor = setTimeout(() => {
+                this.valoresCont.style.opacity = '0'
+            }, 3000)
+
+            this.$cookies.set('touchAnimFrags', true, '4m')
+            this.alertarUsuarioFrags()
         },
 
         // Obtiendo numeros random
@@ -76,8 +102,6 @@
 
         // Animando fragmentos
         animFrag(elem){
-            elem.style.transition = 'all 1.5s ease'
-
             setInterval(() => {
                 let neg = -10, pos = 2
 
@@ -85,7 +109,7 @@
                 numY = this.random(neg, pos)
 
                 elem.style.transform = 'translate(' + numX + 'px, ' + numY + 'px)'
-            }, 1500);
+            }, 1300);
         }
     }
   }
@@ -106,7 +130,7 @@
         overflow: hidden;
     }
 
-    .valores, .nombre, .valores > .check {
+    .valores, .nombreCont, .valores > .check {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -119,23 +143,30 @@
 
     /*Nombre*/ 
     .nombre {
+        background: -webkit-linear-gradient(-60deg, var(--PColor), #808080);
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+    }
+
+    .nombreCont {
         z-index: 999;
         position: absolute;
 
         flex-direction: column;
 
-        border: solid 3px var(--PColor);
-        border-style: dashed;
-        border-radius: 15px;
         padding: 15px;
+        box-shadow: 0 0 15px #000;
 
-        background: -webkit-linear-gradient(-60deg, var(--PColor), #fff);
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        -webkit-background-clip: text;
+        animation: nombreMove 1s ease-out;
 
         top: var(--top-nombre);
         left: var(--left-nombre);
+    }
+
+    @keyframes nombreMove {
+        0% { left: -30% }
+        100% { left: var(--left-nombre); }
     }
 
     /*Fragmentos*/
@@ -209,8 +240,10 @@
         cursor: pointer;
     }
 
+
     /* Parte de los valores */
     .valores {
+        opacity: 0;
         position: absolute;
         bottom: var(--top-nombre);
         right: var(--left-nombre);
@@ -242,17 +275,41 @@
         transform: scale(1.1) rotate(5deg);
     }
 
-    .frags > .anim,
-    .nombre {
+    /* Animaciones y transiciones */
+    .nombreCont {
         transition: all 0.3s ease-out;
+    }
+
+    .tall {
+        transition: all 1.3s ease-out;
+    }
+
+    .pulsar {
+        animation: pulsar 1.5s ease-out 4s 5;
+    }
+
+    @keyframes pulsar {
+        0% { filter: contrast(0); }
+        100% { filter: contrast(1); }
     }
 
     /* Responsive */
     @media (max-width: 800px){
-        .nombre {
+        .nombreCont {
             top: 15px;
-            left: 25%;
-            right: 25%;
+            left: 10%;
+            right: 10%;
+        }
+
+        @keyframes nombreMove {
+            0% { 
+                left: -30%;
+                right: 50%;
+            }
+            100% { 
+                left: 10%;
+                right: 10%;
+            }
         }
 
         .valores {

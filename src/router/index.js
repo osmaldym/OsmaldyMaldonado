@@ -3,9 +3,14 @@ import Presentacion from '../views/Presentacion.vue'
 import SobreMi from '../views/SobreMi.vue'
 import PartPlats from '../views/Plataformas.vue'
 import Contactos from '../views/Contactos.vue'
+import PageNotFound from '../views/PageNotFound.vue'
 
 const routes = [
-  { 
+  {
+    path: '/home',
+    redirect: '/'
+  },
+  {
     path: '/',
     components: {
       default: Presentacion,
@@ -13,15 +18,12 @@ const routes = [
       PartPlats,
       Contactos
     }
+  },
+  {
+    path: '/:catchAll(.*)*',
+    name: "PageNotFound",
+    component: PageNotFound,
   }
-  // Cuando haga la pagina 404
-  // {
-    // {
-      // path: '/:catchAll(.*)*',
-      // name: "PageNotFound",
-      // component: PageNotFound,
-    // },
-  // }
 ]
 
 const router = createRouter({

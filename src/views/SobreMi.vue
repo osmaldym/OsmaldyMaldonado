@@ -1,6 +1,6 @@
 <template>
     <!-- Parte de sobre mi -->
-    <div class="sMi">
+    <div class="sMi" id="Sobre_mi">
       <!-- Divisiones -->
       <div class="parts">
         <!-- Información sobre mí -->
@@ -12,7 +12,7 @@
             <p>Desde los 12 años me ha interesado la programacíon y desde esa edad, he estado creando y puliendo mis habilidades entorno a la programación, me gusta crear y estoy en constante aprendizaje sobre nuevas tecnologías.</p>
             <div class="otros">
               <ul>
-                <li title="Experiencia general"><span class="material-symbols-outlined">grade</span><p>4 años</p></li>
+                <li title="Experiencia general"><span class="material-symbols-outlined">grade</span><p>4+ años</p></li>
                 <li title="Nacimiento"><span class="material-symbols-outlined">cake</span><p>21-08-2005</p></li>
               </ul>
             </div>
@@ -91,6 +91,7 @@
   .otros > ul > li > p{
     color: var(--PColor);
     margin-left: 5px;
+    font-weight: bold;
   }
 
   /* Responsive */

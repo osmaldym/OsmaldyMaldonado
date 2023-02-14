@@ -1,14 +1,17 @@
 <template>
     <!-- Parte de contactos -->
-    <div class="contactos">
+    <div class="contactos" id="Contactos">
       <!-- Titulo -->
       <div class="titleSect">
         <h1 class="link"><a href="#Contactos">#</a></h1><h1 class="title">Contactos</h1>
       </div>
       <!-- Presentacion de informacion adsequible (número telefónico, y gmail) -->
       <div class="basicos">
-        <div class="b num"><span class="material-symbols-sharp">call</span><p>+1 809-370-1462</p></div>
-        <div class="b mail"><span class="material-symbols-sharp">mail</span><p>osmaldy11checo@gmail.com</p></div>
+        <div class="b mail">
+          <a href="mailto:osmaldy11checo@gmail.com">
+            <span class="material-symbols-sharp">mail</span><p>osmaldy11checo@gmail.com</p>
+          </a>
+        </div>
       </div>
       <!-- "Formulario" para enviar un correo electronico desde la misma web -->
       <div class="cDirecto">
@@ -47,7 +50,7 @@
 
 <script>
   // Importaciones
-  // import emailjs from 'emailjs-com'
+  import emailjs from 'emailjs-com'
 
   export default {
     name: 'PageContactos',
@@ -99,18 +102,17 @@
         try {
           this.setAllValuesCookies()
           
-          // emailjs.sendForm(
-          //   "gmail",
-          //   "cd_om",
-          //   "form",
-          //   "cuFIa5BMYmlTuJ2o-",
-          //   {
-          //     name: this.name,
-          //     email: this.email,
-          //     message: this.message
-          //   }
-          // )
-
+          emailjs.sendForm(
+            "gmail",
+            "cd_om",
+            "form",
+            "cuFIa5BMYmlTuJ2o-",
+            {
+              name: this.name,
+              email: this.email,
+              message: this.message
+            }
+          )
           alert('Se ha enviado el email correctamente, gracias por contactarme 😀')
         } catch (error) {
           alert(error)
@@ -182,7 +184,7 @@
   }
 
   /* Parte de contactos basicos */
-  .basicos > .b > span {
+  .b > a > span {
     font-size: 28pt;
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -191,10 +193,21 @@
     padding-right: var(--paddingRightGen);
   }
 
-  .basicos > .b {
+  .b {
     color: var(--TXTColor);
     align-items: center;
     display: flex;
+  }
+
+  .b > a {
+    text-decoration: none;
+    color: var(--TXTColor);
+  }
+
+  .basicos, .b > a {
+    display: flex;
+    align-items: center;
+    height: 100%;
   }
 
   /* Parte de contacto directo */
@@ -248,6 +261,10 @@
     margin-bottom: 10px;
     border-top-left-radius: var(--borderGen);
     border-bottom-left-radius: var(--borderGen);
+  }
+
+  form > fieldset > button {
+    font-weight: bold;
   }
 
   form > fieldset > textarea {

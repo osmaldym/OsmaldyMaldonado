@@ -37,11 +37,15 @@ nav > .logos {
     gap: 5px;
 }
 
-nav > .logos > a.router-link-exact-active > .imgCont,
+nav > .logos > .imgCont,
 nav > .logos > .modo,
 .iconMenu{
     width: 60px;
     height: 60px;
+}
+
+nav > .logos > .imgCont {
+    cursor: pointer;
 }
 
 .iconMenu {
@@ -84,7 +88,7 @@ nav > .logos > .modo > .light {
     z-index: 1;
 }
 
-nav > ul > li > a.router-link-exact-active{
+nav > ul > li > a{
     display: inline-block;
     color: var(--PColor);
     text-decoration: none;
@@ -139,7 +143,7 @@ nav > ul > li > a:hover {
     }
 
     nav > ul > li > .modo > span,
-    nav > ul > li > a.router-link-exact-active{
+    nav > ul > li > a{
         padding: 10px;
         width: 100%;
     }
