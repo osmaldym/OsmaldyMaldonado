@@ -20,15 +20,15 @@
             <h1>Tecnologías que manejo:</h1>
             <div class="logos">
               <ul>
-                <li class="imgCont"><div class="icono html"></div></li>
-                <li class="imgCont"><div class="icono css"></div></li>
-                <li class="imgCont"><div class="icono js"></div></li>
-                <li class="imgCont"><div class="icono ts"></div></li>
-                <li class="imgCont"><div class="icono react"></div></li>
-                <li class="imgCont"><div class="icono vue"></div></li>
-                <li class="imgCont"><div class="icono php"></div></li>
-                <li class="imgCont"><div class="icono java"></div></li>
-                <li class="imgCont"><div class="icono py"></div></li>
+                <li class="imgCont"><div class="bgYears"><h2>HTML5 <br/>4+ Years</h2></div><div class="icono html"></div></li>
+                <li class="imgCont"><div class="bgYears"><h2>CSS3 <br/>4+ Years</h2></div><div class="icono css"></div></li>
+                <li class="imgCont"><div class="bgYears"><h2>JavaScript <br/>3+ Years</h2></div><div class="icono js"></div></li>
+                <li class="imgCont"><div class="bgYears"><h2>TypeScript <br/>1- Year</h2></div><div class="icono ts"></div></li>
+                <li class="imgCont"><div class="bgYears"><h2>React <br/>1- Year</h2></div><div class="icono react"></div></li>
+                <li class="imgCont"><div class="bgYears"><h2>Vue <br/>1- Year</h2></div><div class="icono vue"></div></li>
+                <li class="imgCont"><div class="bgYears"><h2>PHP <br/>1- Year</h2></div><div class="icono php"></div></li>
+                <li class="imgCont"><div class="bgYears"><h2>Java <br/>3+ Years</h2></div><div class="icono java"></div></li>
+                <li class="imgCont"><div class="bgYears"><h2>Python <br/>1- Years</h2></div><div class="icono py"></div></li>
               </ul>
             </div>
           </div>
@@ -147,14 +147,29 @@
 
         this.addTransition(this.logosUl)
 
-        setInterval(() => {
-          let left = this.revLeft(this.logosUl)
+        let isPressed = false;
 
-          if (left >= this.restWidth) left = left - 10
-          else left = 110
+        const downList = () => {
+          isPressed = true;
 
-          this.logosUl.style.left = left + 'px'
-        }, 100);
+          this.logos.addEventListener('mousemove', moveList)
+          window.addEventListener('mouseup', upList)
+          window.addEventListener('mousemove', moveList)
+        }
+
+        const upList = () => {
+          isPressed = false
+        }
+
+        const moveList = (e) => {
+          if (isPressed){
+            this.preventAll(e)
+            this.logos.scrollLeft += e.movementX * -1
+            console.log(e.movementX)
+          }
+        }
+
+        this.logosUl.addEventListener('mousedown', downList)
       },
     }
   }
@@ -203,7 +218,8 @@
     flex-direction: column;
   }
 
-  .info, .pant, .inputs, .botones {
+  .info, .pant, .inputs, .botones,
+  .logos > ul > li, .bgYears {
     justify-content: center;
     align-items: center;
   }
@@ -215,8 +231,13 @@
 
   .logos {
     overflow: hidden;
+    overflow-x: scroll;
     position: relative;
     height: 20vh;
+  }
+
+  .logos::-webkit-scrollbar{
+    display: none;
   }
 
   .logos > ul {
@@ -226,13 +247,39 @@
     left: 0;
   }
 
+  .logos > ul > li,
+  .logos > ul > li > .bgYears{
+    display: flex;
+  }
+
   .logos > ul > li {
     width: 20vh;
     height: 20vh;
+    overflow: hidden;
+    border-radius: 15px;
   }
 
   .logos > ul > li > .icono {
+    border-radius: 15px;
+    width: 18vh;
+    height: 18vh;
     background-color: var(--PColor);
+
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .logos > ul > li > .bgYears {
+    opacity: 0;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.6);
+    text-align: center;
+    font-size: 14pt;
+
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
   }
 
   /* Todos los SVG */
@@ -273,7 +320,7 @@
   .pcs {
     gap: 25px;
     display: flex;
-    align-items: center;
+    align-items:ª center;
   }
 
   /* Todos los dispositivos */
@@ -399,6 +446,16 @@
 
   .botones > span{
     padding: 0 15px;
+  }
+
+  /* Hovers */
+  .logos > ul > li > .bgYears:hover {
+    opacity: 1;
+  }
+
+  /* Transition */
+  .logos > ul > li > .bgYears {
+    transition: all 0.5s ease-out;
   }
 
   /* Responsive */
