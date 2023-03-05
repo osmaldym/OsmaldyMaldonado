@@ -34,70 +34,52 @@
           </div>
         </div>
         <!-- Parte de presentacion de dispositivos -->
-        <div class="graphs">
-          <!-- Contenedor de todo -->
-          <div class="all">
-            <!-- Compuutadoras (Web y App) -->
-            <div class="pcs">
-              <!-- Aplicación -->
-              <div class="app">
-                <div class="acciones">
-                  <span class="material-symbols-outlined">close</span>
-                  <span class="material-symbols-sharp">check_box_outline_blank</span>
-                  <span class="material-symbols-outlined">minimize</span>
-                </div>
-                <div class="pant">
-                  <div class="inputs">
-                    <div class="input"></div>
-                    <div class="input"></div>
-                    <div class="input"></div>
-                  </div>
-                  <div class="table">
-                    <div class="title"></div>
-                  </div>
-                </div>
+        <div class="graph">
+          <div class="device">
+            <div class="cam"></div>
+            <div class="btnsPc">
+              <span class="material-symbols-outlined">chrome_minimize</span>
+              <span class="material-symbols-outlined">chrome_maximize</span>
+              <span class="material-symbols-outlined">close</span>
+            </div>
+            <div class="tabWeb">
+              <div class="outerBorder">
+                <div class="border left"></div>
               </div>
-
-              <!-- WEB -->
-              <div class="web">
-                <div class="acciones">
-                  <span class="material-symbols-outlined">close</span>
-                  <span class="material-symbols-sharp">check_box_outline_blank</span>
-                  <span class="material-symbols-outlined">minimize</span>
-                </div>
-                <div class="barra"></div>
-                <div class="pant">
-                  <div class="rep">
-                    <h1>WWW</h1>
-                  </div>
-                </div>
+              <div class="content">
+                <span class="material-symbols-outlined">square</span>
+                <p>Hello world!</p>
+                <span class="material-symbols-outlined">close</span>
+              </div>
+              <div class="outerBorder">
+                <div class="border right"></div>
+              </div>
+              <div class="addBtn">
+                <span class="material-symbols-outlined">add</span>
               </div>
             </div>
-
-            <!-- Celular -->
-            <div class="cel">
-              <div class="notif">
-                <div class="l"><p>12:00</p></div>
-                <div class="cam"></div>
-                <div class="r"></div>
-              </div>
-              <div class="pant">
-                <div class="inputs">
-                  <div class="input"></div>
-                  <div class="input"></div>
-                  <div class="input"></div>
+            <div class="webBar">
+                <span class="material-symbols-outlined">navigate_before</span>
+                <span class="material-symbols-outlined">navigate_next</span>
+                <span class="material-symbols-outlined">refresh</span>
+                <div class="search">
+                  <span class="material-symbols-outlined">square</span>
+                  <p>www.helloword.com/</p>
                 </div>
-                  <div class="table">
-                    <div class="title"></div>
-                  </div>
+                <span class="material-symbols-outlined">extension</span>
+                <span class="material-symbols-outlined">account_circle</span>
+                <span class="material-symbols-outlined">more_vert</span>
               </div>
-              <div class="botones">
-                <span class="material-symbols-sharp">crop_square</span>
-                <span class="material-symbols-sharp">circle</span>
-                <span class="material-symbols-sharp btnAtras">change_history</span>
-              </div>
+            <div class="pant">
+              <h1>Hello world! <span>😃</span> </h1>
+            </div>
+            <div class="btnsAnd">
+              <span class="material-symbols-outlined">arrow_left</span>
+              <span class="material-symbols-outlined">circle</span>
+              <span class="material-symbols-outlined">chrome_maximize</span>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -178,16 +160,10 @@
 <style scoped>
   /* All */
   .plats {
-    --cel-Cam-Tam: 15px;
-    --LOfCel: 3%;
-
     --size_p: 16pt;
-
-    --gen-padding: 5px;
   }
 
-  .info, .divs, .graphs, .acciones,
-  .inputs, .pant, .notif, .botones,
+  .info, .divs, .graph, .device,
   .pcs, .logos > ul {
     position: relative;
     display: flex;
@@ -214,11 +190,11 @@
     color: var(--PColor);
   }
 
-  .plats, .info, .inputs, .pcs {
+  .plats, .info, .pcs {
     flex-direction: column;
   }
 
-  .info, .pant, .inputs, .botones,
+  .info, .pant,
   .logos > ul > li, .bgYears {
     justify-content: center;
     align-items: center;
@@ -298,7 +274,7 @@
   }
 
   .info {
-    width: 60%;
+    width: 100%;
     padding: 5%;
   }
 
@@ -306,146 +282,313 @@
     font-weight: bold;
   }
 
-  .graphs {
+  .graph {
     width: 100%;
     align-items: center;
+    justify-content: center;
     overflow: hidden;
   }
 
-  .all {
-    position: relative;
-    width: 100%;
+  /* Device part */
+  .device,
+  .device > *, 
+  .btnsPc > *,
+  .webBar > *, 
+  .tabWeb > *,
+  .btnsAnd > *{
+    animation-duration: 5s;
+    animation-direction: ease-out;
+    animation-iteration-count: infinite;
   }
-
-  .pcs {
-    gap: 25px;
-    display: flex;
-    align-items:ª center;
-  }
-
-  /* Todos los dispositivos */
-  .app, .cel, .web {
-    overflow: hidden;
-    box-shadow: 0 0 15px #000;
-    background-color: rgb(170, 170, 170);
-  }
-
-  .app, .cel {
-    border-radius: 15px;
-  }
-
-  .app > .pant > .table {
-    height: 100%;
-    width: 55%;
-  }
-
-  .cel > .pant > .table {
-    height: 55%;
-    width: 90%;
-  }
-
-  .pant{
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 15px 0;
-  }
-
-  .inputs{
+  .device {
     flex-direction: column;
-    gap: 5px;
-  }
-
-  .table{
+    border: solid 3px var(--PColor);
     overflow: hidden;
+
+    animation-name: animDevice;
   }
 
-  .input{
-    width: 180px;
-    height: 30px;
-  }
-
-  .input, .table{
-    border-radius: 10px;
-    background-color: #fff;
-  }
-
-  .table > .title {
-    height: 25px;
-    background-color: var(--PColor);
-  }
-
-  .app, .web {
-    width: 80vh;
-    height: 300px;
-  }
-
-  /* Pantalla computador APP */
-  .app > .pant {
-    height: calc(100% - 35px);
-  }
-
-  .acciones {
-    flex-direction: row-reverse;
-    padding: var(--gen-padding);
-  }
-
-  /* Pantalla computador WEB */
-  .web > .pant {
-    height: calc(100% - 35px * 2);
-  }
-
-  .barra {
-    width: 100%;
-    height: 35px;
-    background-color: var(--PColor);
-  }
-
-  .rep {
-    padding: 25px;
-    background-color: #fff;
+  .cam {
     border-radius: 15px;
+    background-color: var(--PColor);
+    margin: 5px auto;
+
+    animation-name: animCam;
   }
 
-  /* CELULAR */
-  .cel{
+  .btnsPc {
     position: absolute;
-    top: 10%;
-    left: var(--LOfCel);
-    width: 260px;
-    height: 500px;
+
+    animation-name: animBtnsPC;
   }
 
-  .notif, .botones{
-    height: 35px;
+  .btnsPc > span {
+    animation-name: animBtnsPCSpan;
+  }
+
+  .btnsAnd > span {
+    animation-name: animBtnsAndSpan;
+  }
+
+  .btnsPc > span,
+  .btnsAnd > span {
+    color: var(--PColor);
+  }
+
+  .pant {
+    width: 70%;
+    margin: auto;
+  }
+
+  .tabWeb {
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    position: absolute;
+
+    animation-name: animTabWeb;
+  }
+
+  .tabWeb > .outerBorder,
+  .tabWeb > .outerBorder > .border {
+    width: 5px;
+    height: 5px;
+  }
+
+  .tabWeb > .outerBorder {
+    background-color: var(--PColor);
+  }
+
+  .tabWeb > .outerBorder > .border {
+    background-color: var(--SColor);
+  }
+
+  .tabWeb > .outerBorder > .left {
+    border-bottom-right-radius: 5px;
+  }
+
+  .tabWeb > .outerBorder > .right {
+    border-bottom-left-radius: 5px;
+  }
+
+  .tabWeb > .addBtn {
+    display: flex;
+    align-items: center;
+
+    animation-name: animAddBtn;
+  }
+
+  .tabWeb > .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    animation-name: animTabWebContent;
+  }
+
+  .tabWeb > p, .tabWeb > span, 
+  .tabWeb > .addBtn > span,
+  .tabWeb > .content > p,
+  .tabWeb > .content > span,
+  .search > p, 
+  .search > span {
+    color: var(--TXTColor);
+    font-size: 8pt;
+  }
+
+  .webBar, .webBar > .search {
+    display: flex;
     align-items: center;
   }
 
-  .notif > .l,
-  .notif > .r{
-    width: 50%;
+  .webBar {
+    position: absolute;
+
+    animation-name: animWebBar;
   }
 
-  .notif > .l{
-    padding-left: 5px;
+  .webBar > .search {
+    display: flex;
+    animation-name: animWebBarSearch;
   }
 
-  .notif > .cam{
-    width: var(--cel-Cam-Tam);
-    height: var(--cel-Cam-Tam);
-    background-color: var(--PColor);
-    border-radius: var(--cel-Cam-Tam);
+  .webBar > .search > p,
+  .webBar > .search > span{
+    color: #000;
   }
 
-  .cel > .pant{
-    height: calc(100% - (35px * 2));
+  .btnsAnd {
+    display: flex;
+    margin: 5px auto;
+    animation-name: animBtnsAnd;
   }
 
-  .botones > .btnAtras{
-    transform: rotate(-90deg);
+  /* Anim complete device */
+  @keyframes animDevice {
+    0%, 10%, 90%, 10%, 90%, 100% {
+      width: 95%;
+      height: 300px;
+    }
+
+    50% {
+      border-radius: 25px;
+      width: 300px;
+      height: 600px;
+    }
   }
 
-  .botones > span{
-    padding: 0 15px;
+  @keyframes animCam {
+    0%, 10%, 90%, 10%, 90%, 100% {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    50% {
+      opacity: 1;
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  @keyframes animBtnsPC {
+    0%, 10%, 90%, 100% {
+      opacity: 1;
+      top: 5px;
+      right: 5px;
+    }
+
+    50% {
+      opacity: 0;
+      top: 0;
+      right: 0;
+    }
+  }
+
+  @keyframes animBtnsAndSpan {
+    0%, 10%, 90%, 100% {
+      font-size: 0pt;
+    }
+
+    50% {
+      font-size: 18pt;
+    }
+  }
+
+  @keyframes animBtnsPCSpan {
+    0%, 10%, 90%, 100% {
+      font-size: 18pt;
+    }
+
+    50% {
+      font-size: 0pt;
+    }
+  }
+
+  @keyframes animTabWeb {
+    0%, 10%, 50%, 100% {
+      opacity: 0;
+      height: 0;
+      top: 0;
+      left: 0;
+    }
+
+    90% {
+      opacity: 1;
+      height: 25px;
+      top: 9px;
+    }
+  }
+
+  @keyframes animTabWebContent {
+    0%, 10%, 50%, 100% {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      background-color: inherit;
+      height: 0;
+      width: 0;
+      gap: 0;
+    }
+
+    90% {
+      background-color: var(--PColor);
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      width: 110px;
+      height: 25px;
+      gap: 5px;
+    }
+  }
+
+  @keyframes animAddBtn {
+    0%, 10%, 50%, 100% {
+      opacity: 0;
+      height: 0;
+    }
+
+    90% {
+      opacity: 1;
+      height: 25px;
+    }
+  }
+
+  @keyframes animWebBar {
+    0%, 10%, 50%, 100% {
+      opacity: 0;
+      padding: 0;
+      background-color: inherit;
+      width: 0;
+      top: 0;
+      left: 0;
+      gap: 0;
+    }
+
+    90% {
+      opacity: 1;
+      padding: 2px;
+      background-color: var(--PColor);
+      width: 100%;
+      top: 33px;
+      left: 0;
+      gap: 10px;
+    }
+  }
+
+  @keyframes animWebBarSearch {
+    0%, 10%, 50%, 100%{
+      opacity: 0;
+      padding: 0;
+      border-radius: 0;
+      background-color: inherit;
+      width: 0;
+      top: 0;
+      left: 0;
+      gap: 0;
+    }
+
+    90% {
+      opacity: 1;
+      padding: 5px;
+      border-radius: 20px;
+      background-color: rgba(255, 255, 255, 0.7);
+      width: 100%;
+      top: 25px;
+      left: 0;
+      gap: 10px;
+    }
+  }
+
+  @keyframes animBtnsAnd {
+    0%, 10%, 90%, 100% {
+      opacity: 0;
+      gap: 0;
+    }
+
+    50% {
+      opacity: 1;
+      gap: 10px;
+    }
   }
 
   /* Hovers */
@@ -482,7 +625,7 @@
       margin-left: 5%;
     }
 
-    .graphs {
+    .graph {
       height: 85vh;
     }
   }
