@@ -331,8 +331,12 @@
   }
 
   .btnsPc > span,
-  .btnsAnd > span {
+  .btnsAnd > span{
     color: var(--PColor);
+  }
+
+  .webBar > span {
+    color: var(--TXTColor);
   }
 
   .pant {
@@ -403,6 +407,7 @@
   }
 
   .webBar {
+    width: 100%;
     position: absolute;
 
     animation-name: animWebBar;
@@ -538,7 +543,6 @@
       opacity: 0;
       padding: 0;
       background-color: inherit;
-      width: 0;
       top: 0;
       left: 0;
       gap: 0;
@@ -548,7 +552,6 @@
       opacity: 1;
       padding: 2px;
       background-color: var(--PColor);
-      width: 100%;
       top: 33px;
       left: 0;
       gap: 10px;
