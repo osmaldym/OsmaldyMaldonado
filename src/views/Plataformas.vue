@@ -9,9 +9,10 @@
             <h1 class="link"><a href="#Plataformas">#</a></h1><h1>¡Te puedo crear lo que te imagines!</h1>
           </div>
           <ul>
-            <li>Aplicaciones moviles (Android - Java)</li>
-            <li>Aplicaciones de escritorio</li>
-            <li>Sitios web:</li>
+            <span class="arrow">➜</span>
+            <li class="app">Aplicaciones de escritorio</li>
+            <li class="appM">Aplicaciones moviles (Android - Java)</li>
+            <li class="web">Sitios web</li>
           </ul>
           <p>¡E-Commerces, blogs, institucionales, portafolios, wikis y mas!</p>
 
@@ -28,7 +29,14 @@
                 <li class="imgCont"><div class="bgYears"><h2>Vue <br/>1- Year</h2></div><div class="icono vue"></div></li>
                 <li class="imgCont"><div class="bgYears"><h2>PHP <br/>1- Year</h2></div><div class="icono php"></div></li>
                 <li class="imgCont"><div class="bgYears"><h2>Java <br/>3+ Years</h2></div><div class="icono java"></div></li>
-                <li class="imgCont"><div class="bgYears"><h2>Python <br/>1- Years</h2></div><div class="icono py"></div></li>
+                <li class="imgCont"><div class="bgYears"><h2>Python <br/>1- Year</h2></div><div class="icono py"></div></li>
+                <li class="imgCont"><div class="bgYears"><h2>Flask <br/>1- Year</h2></div><div class="icono flask"></div></li>
+                <li class="imgCont"><div class="bgYears"><h2>ORMLite <br/>1- Year</h2></div><div class="icono ormlite"></div></li>
+                <li class="imgCont"><div class="bgYears"><h2>Firebase <br/>1- Year</h2></div><div class="icono firebase"></div></li>
+                <li class="imgCont"><div class="bgYears"><h2>MySQL <br/>3+ Years</h2></div><div class="icono mysql"></div></li>
+                <li class="imgCont"><div class="bgYears"><h2>SQLite <br/>2+ Years</h2></div><div class="icono sqlite"></div></li>
+                <li class="imgCont"><div class="bgYears"><h2>SQL Server <br/>3+ Years</h2></div><div class="icono msqlserver"></div></li>
+                <li class="imgCont"><div class="bgYears"><h2>PostreSQL <br/>1- Years</h2></div><div class="icono psql"></div></li>
               </ul>
             </div>
           </div>
@@ -152,7 +160,7 @@
         }
 
         this.logosUl.addEventListener('mousedown', downList)
-      },
+      }
     }
   }
 </script>
@@ -200,6 +208,11 @@
     align-items: center;
   }
 
+  .titleSect > h1,
+  .info > p{
+    color: var(--TXTColor);
+  }
+
   /* Parte de Plataformas */
   .tecs {
     width: 100%;
@@ -235,6 +248,7 @@
     border-radius: 15px;
   }
 
+
   .logos > ul > li > .icono {
     border-radius: 15px;
     width: 18vh;
@@ -268,17 +282,59 @@
   .logos > ul > li > .vue { mask: url('@/assets/lenguajes/vue.svg') no-repeat center; }
   .logos > ul > li > .java { mask: url('@/assets/lenguajes/java.svg') no-repeat center; }
   .logos > ul > li > .py { mask: url('@/assets/lenguajes/py.svg') no-repeat center; }
+  .logos > ul > li > .flask { mask: url('@/assets/lenguajes/flask.svg') no-repeat center; }
+
+  .logos > ul > li > .ormlite { mask: url('@/assets/lenguajes/ormlite.svg') no-repeat center; }
+  .logos > ul > li > .firebase { mask: url('@/assets/lenguajes/firebase.svg') no-repeat center; }
+  .logos > ul > li > .mysql { mask: url('@/assets/lenguajes/mysql.svg') no-repeat center; }
+  .logos > ul > li > .sqlite { mask: url('@/assets/lenguajes/sqlite.svg') no-repeat center; }
+  .logos > ul > li > .msqlserver { mask: url('@/assets/lenguajes/msqlserver.svg') no-repeat center; }
+  .logos > ul > li > .psql { mask: url('@/assets/lenguajes/psql.svg') no-repeat center; }
 
   .divs, .info {
     height: 100%;
   }
 
+  /* Info part */
   .info {
     width: 100%;
     padding: 5%;
   }
 
   .info > p {
+    font-weight: bold;
+  }
+
+  .info > ul > .arrow {
+    position: absolute;
+    left: -40px;
+    font-size: 18pt;
+    color: var(--PColor);
+
+    animation-name: moveArrow;
+  }
+
+  .info > ul > .app {
+    animation-name: changeColorApp;
+  }
+
+  .info > ul > .appM {
+    animation-name: changeColorAppM;
+  }
+
+  .info > ul > .web {
+    animation-name: changeColorWeb;
+  }
+
+  .info > ul {
+    list-style: none;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .info > ul > li {
     font-weight: bold;
   }
 
@@ -295,7 +351,8 @@
   .btnsPc > *,
   .webBar > *, 
   .tabWeb > *,
-  .btnsAnd > *{
+  .btnsAnd > *,
+  .info > ul > *{
     animation-duration: 5s;
     animation-direction: ease-out;
     animation-iteration-count: infinite;
@@ -429,7 +486,53 @@
     animation-name: animBtnsAnd;
   }
 
-  /* Anim complete device */
+  /* Animations */
+
+  
+  @keyframes moveArrow {
+    0%, 10%, 100% {
+      top: -3px;
+    }
+
+    50% {
+      top: 31px;
+    }
+
+    90% {
+      top: calc(32px * 2);
+    }
+  }
+
+  @keyframes changeColorApp {
+    50%, 90% {
+      color: var(--TXTColor);
+    }
+
+    0%, 10%, 100% {
+      color: var(--PColor);
+    }
+  }
+
+  @keyframes changeColorAppM {
+    0%, 10%, 90%, 100% {
+      color: var(--TXTColor);
+    }
+
+    50% {
+      color: var(--PColor);
+    }
+  }
+
+  @keyframes changeColorWeb {
+    0%, 10%, 50%, 100%  {
+      color: var(--TXTColor);
+    }
+
+    90% {
+      color: var(--PColor);
+    }
+  }
+
   @keyframes animDevice {
     0%, 10%, 90%, 10%, 90%, 100% {
       width: 95%;

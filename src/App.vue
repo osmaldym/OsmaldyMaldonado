@@ -133,8 +133,8 @@
                         else y = y + yH
 
                         if (y <= yH){
-                            if (elem.id != '') history.pushState(null, null, '#' + elem.id)
-                            else history.pushState(null, null, '/') 
+                            if (elem.id != '') history.replaceState(null, null, '#' + elem.id)
+                            else history.replaceState(null, null, '/') 
                             return
                         }
                     }
