@@ -8,9 +8,9 @@
       <!-- Presentacion de informacion adsequible (número telefónico, y gmail) -->
       <div class="basicos">
         <div class="b mail">
-          <a href="mailto:osmaldy11checo@gmail.com">
-            <span class="material-symbols-sharp">mail</span><p>osmaldy11checo@gmail.com</p>
-          </a>
+          <div onclick="location.href = 'mailto:osmaldy11checo@gmail.com'">
+            <span class="material-symbols-sharp">mail</span><p><span>osmaldy11checo</span><span>@gmail.com</span></p>
+          </div>
         </div>
       </div>
       <!-- "Formulario" para enviar un correo electronico desde la misma web -->
@@ -184,27 +184,28 @@
   }
 
   /* Parte de contactos basicos */
-  .b > a > span {
+  .b {
+    width: 100%;
+    padding-right: var(--paddingRightGen);
+    color: var(--TXTColor);
+  }
+
+  .b > div > p {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .b > div > span {
     font-size: 28pt;
     -moz-user-select: none;
     -webkit-user-select: none;
     user-select: none;
     color: var(--PColor);
-    padding-right: var(--paddingRightGen);
+    padding-right: 5px;
   }
 
-  .b {
-    color: var(--TXTColor);
-    align-items: center;
-    display: flex;
-  }
-
-  .b > a {
-    text-decoration: none;
-    color: var(--TXTColor);
-  }
-
-  .basicos, .b > a {
+  .basicos, .b > div {
     display: flex;
     align-items: center;
     height: 100%;

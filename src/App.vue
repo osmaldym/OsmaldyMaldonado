@@ -1,6 +1,6 @@
 <template>
-    <div class="iconMenu imo" @click="presentarMenu()"><span class="material-symbols-outlined">menu</span></div>
-    <nav>
+    <div class="iconMenu imo anim" @click="presentarMenu()"><span class="material-symbols-outlined">menu</span></div>
+    <nav class="anim">
         <div class="logos">
             <div class="iconMenu" @click="ocultarMenu()"><span class="material-symbols-outlined">menu</span></div>
             <div class="imgCont" onclick="location.href = '/'"><img src="@/assets/logo.png" alt="Logo de Osmaldy Maldonado"></div>
@@ -41,14 +41,17 @@
                 menu: null,
                 elems: [],
                 actualScroll: 0,
-                wScreen: 0
+                wScreen: window.innerWidth,
+                isPC: false
             }
         },
         mounted () {
             this.createNecesary()
         },
         methods: {
-            // Creando y espcificando lo necesario
+            /**
+             * Creando y espcificando lo necesario
+             */
             createNecesary(){
                 this.rootElem = document.documentElement
 
@@ -59,17 +62,25 @@
 
                 this.menu = document.querySelector('nav')
                 this.iconMenu = document.querySelector('.imo')
-                this.wScreen = window.innerWidth
+                
+                this.isPC = this.wScreen > 800
+
+                window.addEventListener('resize', () => {
+                    this.wScreen = window.innerWidth
+                    this.isPC = this.wScreen > 800
+
+                    this.ocultarMenu()
+                })
 
                 this.setModeDL()
-
-                if (this.wScreen > 800) this.presentarMenu()
-                else this.ocultarMenu()
                 
                 window.addEventListener('scroll', this.addAll)
             },
 
-            // Añadiendo y espcificando lo necesario
+            /**
+             * Añadiendo y espcificando lo necesario
+             * @param {Event} e
+             */
             addAll(e){
                 e.preventDefault()
                 e.stopPropagation()
@@ -78,43 +89,59 @@
                 /* Añadiendo efecto de Menú por Scroll */
                 this.addMenuEffect()
 
-                if (this.wScreen > 800) {
-                    /* Añadiendo cambio de URL por Scroll */
-                    this.addChangeURL()
+                if (this.isPC) this.addChangeURL()
+            },
+
+            /**
+             * Metodo para presentar el menú y presentar su botón
+             */
+            presentarMenu(){
+                this.remAll()
+
+                if (this.isPC) {
+                    this.menu.classList.add('show')
+                    this.iconMenu.classList.add('hide')
+                } else {
+                    this.menu.classList.add('showSmartphone')
+                    this.iconMenu.classList.add('hideSmartphone')
+                }  
+            },
+            
+            /**
+             * Metodo para ocultar el menú y presentar su boton
+             */
+            ocultarMenu(){
+                this.remAll()
+
+                if (this.isPC) {
+                    this.menu.classList.add('hide')
+                    this.iconMenu.classList.add('show')
+                } else {
+                    this.menu.classList.add('hideSmartphone')
+                    this.iconMenu.classList.add('showSmartphone')
                 }
             },
 
-            // Metodo para presentar el menú y presentar su botón
-            presentarMenu(){
-                this.presentar(this.menu)
-                this.ocultar(this.iconMenu)
-            },
-            
-            // Metodo para ocultar el menú y presentar su boton
-            ocultarMenu(){
-                this.ocultar(this.menu)
-                this.presentar(this.iconMenu)
+            /**
+             * Metodo para resetear todas las clases del menú y el icono del menú
+             */
+            remAll(){
+                let allClasses = ['show', 'hide', 'showSmartphone', 'hideSmartphone']
+
+                try {
+                    allClasses.forEach(el => {
+                        this.menu.classList.remove(el)
+                        this.iconMenu.classList.remove(el)
+                    });
+                } catch (error){/* XD */}
             },
 
-            // Metodo para presentar un elemento (Menú)
-            presentar(elem){
-                elem.style.top = '0'
-                elem.style.left = '0'
-            },
-
-            // Metodo para ocultar un elemento (Menú)
-            ocultar(elem){
-                elem.style.transition = 'all 0.3s ease-in-out'
-
-                if (this.wScreen > 800) elem.style.top = '-60px'
-                else elem.style.left = '-100%'
-            },
 
             // Añadiendo efectos de ocultar/presentar menú
             addMenuEffect(){
                 let y = window.scrollY
 
-                if (this.wScreen > 800) {
+                if (this.isPC) {
                     if (y > this.actualScroll) this.ocultarMenu()
                     else this.presentarMenu()
                 }
@@ -143,7 +170,6 @@
 
             // Cambio de modo
             changeModeDL(){
-                console.log(this.$cookies.get('darkMode'));
                 if (this.getCookieDarkMode()){
                     this.$cookies.set('darkMode', 'false', '2w')
                     this.setModeDL()

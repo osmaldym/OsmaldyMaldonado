@@ -11,7 +11,7 @@
           <ul>
             <span class="arrow">➜</span>
             <li class="app">Aplicaciones de escritorio</li>
-            <li class="appM">Aplicaciones moviles (Android - Java)</li>
+            <li class="appM">Aplicaciones moviles (Android / Java)</li>
             <li class="web">Sitios web</li>
           </ul>
           <p>¡E-Commerces, blogs, institucionales, portafolios, wikis y mas!</p>
@@ -155,7 +155,6 @@
           if (isPressed){
             this.preventAll(e)
             this.logos.scrollLeft += e.movementX * -1
-            console.log(e.movementX)
           }
         }
 
@@ -186,7 +185,8 @@
     text-align: center;
   }
 
-  .info h1, ul {
+  .titleSect > h1,
+  ul {
     margin-bottom: 20px;
   }
 
@@ -216,6 +216,10 @@
   /* Parte de Plataformas */
   .tecs {
     width: 100%;
+  }
+
+  .tecs > h1 {
+    margin: 10px 0;
   }
 
   .logos {
@@ -305,9 +309,23 @@
     font-weight: bold;
   }
 
+  .info > ul {
+    list-style: none;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .info > ul > li {
+    height: 100%;
+    font-weight: bold;
+  }
+
   .info > ul > .arrow {
+    height: 68%;
     position: absolute;
-    left: -40px;
+    left: -10%;
     font-size: 18pt;
     color: var(--PColor);
 
@@ -324,18 +342,6 @@
 
   .info > ul > .web {
     animation-name: changeColorWeb;
-  }
-
-  .info > ul {
-    list-style: none;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .info > ul > li {
-    font-weight: bold;
   }
 
   .graph {
@@ -472,6 +478,7 @@
 
   .webBar > .search {
     display: flex;
+    overflow: hidden;
     animation-name: animWebBarSearch;
   }
 
@@ -487,19 +494,18 @@
   }
 
   /* Animations */
-
   
   @keyframes moveArrow {
     0%, 10%, 100% {
-      top: -3px;
+      transform: translateY(0%);
     }
 
     50% {
-      top: 31px;
+      transform: translateY(50%);
     }
 
     90% {
-      top: calc(32px * 2);
+      transform: translateY(100%);
     }
   }
 
@@ -542,7 +548,7 @@
     50% {
       border-radius: 25px;
       width: 300px;
-      height: 600px;
+      height: 550px;
     }
   }
 

@@ -164,3 +164,30 @@ nav > ul > li > a:hover {
         color: var(--TXTColor);
     }
 }
+
+/* Of JS */
+.default {
+    transition: none 0s ease;
+    top: '0';
+    left: '0';
+}
+
+.anim {
+    transition: all 0.3s ease-in-out;
+}
+
+.hide {
+    top: -60px;
+}
+
+.hideSmartphone {
+    left: -100%;
+}
+
+.show {
+    top: 0;
+}
+
+.showSmartphone {
+    left: 0;
+}
