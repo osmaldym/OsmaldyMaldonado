@@ -302,7 +302,7 @@
   /* Info part */
   .info {
     width: 100%;
-    padding: 5%;
+    padding: 15px;
   }
 
   .info > p {
@@ -318,16 +318,21 @@
   }
 
   .info > ul > li {
-    height: 100%;
     font-weight: bold;
   }
 
   .info > ul > .arrow {
-    height: 68%;
     position: absolute;
-    left: -10%;
-    font-size: 18pt;
+    margin-left: -25px;
+    
+    height: 70%;
+    
+    font-size: 16pt;
     color: var(--PColor);
+
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 
     animation-name: moveArrow;
   }
@@ -358,8 +363,8 @@
   .webBar > *, 
   .tabWeb > *,
   .btnsAnd > *,
-  .info > ul > *{
-    animation-duration: 5s;
+  .info > ul > * {
+    animation-duration: 4s;
     animation-direction: ease-out;
     animation-iteration-count: infinite;
   }
@@ -497,7 +502,7 @@
   
   @keyframes moveArrow {
     0%, 10%, 100% {
-      transform: translateY(0%);
+      transform: translateY(-3px);
     }
 
     50% {
@@ -734,7 +739,17 @@
     }
 
     .info > ul {
+      list-style: disc;
       margin-left: 5%;
+    }
+
+    .info > ul > li {
+      animation: none;
+      color: var(--PColor);
+    }
+
+    .info > ul > .arrow {
+      opacity: 0;
     }
 
     .graph {
