@@ -20,7 +20,7 @@
         </div>
         <!-- Imagen completa de mí -->
         <div class="me">
-          <img src="../assets/o2.png" alt="Imagen de Osmaldy Maldonado">
+          <img src="../assets/o2.png" alt="Imagen de Osmaldy Maldonado completo">
         </div>
       </div>
     </div>

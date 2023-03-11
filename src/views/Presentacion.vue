@@ -22,7 +22,7 @@
         </div>
         <!-- Contenedor de imagen (Mitad) -->
         <div class="contImg">
-            <img src="../assets/o1_m.png" alt="">
+            <img src="../assets/o1_m.png" alt="Imagen cortada de Osmaldy Maldonado">
         </div>
 
         <!-- Valores a presentar al tocar fragmentos -->

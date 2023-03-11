@@ -64,6 +64,8 @@
                 this.iconMenu = document.querySelector('.imo')
                 
                 this.isPC = this.wScreen > 800
+                
+                this.ocultarMenu()
 
                 window.addEventListener('resize', () => {
                     this.wScreen = window.innerWidth
@@ -86,7 +88,6 @@
                 e.stopPropagation()
                 e.stopImmediatePropagation()
 
-                /* Añadiendo efecto de Menú por Scroll */
                 this.addMenuEffect()
 
                 if (this.isPC) this.addChangeURL()

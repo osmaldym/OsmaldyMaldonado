@@ -19,8 +19,8 @@
         <form v-on:submit="enviarEmail">
           <fieldset>
             <legend> <!--Vacío porque xd--> </legend>
-            <input name="name" type="text" pattern="[^0-9_ ]{1,}|[^0-9_ ]{1,}[ ][^0-9_ ]{1,}" placeholder="Nombre" minlength="4" maxlength="50" required/>
-            <input name="email" type="email" pattern="[^0-9_ ]{1,}|+@gmail.com" placeholder="Email" minlength="12" required/>
+            <input name="name" type="text"  placeholder="Nombre" minlength="4" maxlength="50" required/>
+            <input name="email" type="email" pattern="+@gmail.com" placeholder="Email" minlength="12" required/>
             <button type="submit">Enviar</button>
             </fieldset>
           <fieldset>
@@ -49,7 +49,9 @@
 </template>
 
 <script>
-  // Importaciones
+  /**
+   * Import modules
+   */
   import emailjs from 'emailjs-com'
 
   export default {
@@ -97,9 +99,33 @@
         this.$cookies.set('email', this.inputs[1].value, '1w')
       },
 
+      /**
+       * Formato de input de nombre por si hay errores
+       */
+      formatInputName(){
+        let nombreIn = this.inputs[0]
+        let nombre = this.inputs[0].value
+
+        nombre = nombre.replace(/[0-9]|[^0-9a-zA-Z\s]/g, '').replace(/^\s*$|^\s{2,}|\s{1,}$/g, '').replace(/\s{2,}/, ' ')
+
+        let nombreDiv = nombre.split(' ')
+        nombre = ''
+
+        nombreDiv.forEach((nom, i) => {
+          let may = nom.substring(0, 1).toUpperCase()
+          
+          nombre += may + nom.substring(1)
+
+          if (i < nombreDiv.length-1) nombre += ' '
+        });
+
+        nombreIn.value = nombre
+      },
+
       // Metodo para envío de emails
       enviarEmail(){
         try {
+          this.formatInputName()
           this.setAllValuesCookies()
           
           emailjs.sendForm(
@@ -115,7 +141,7 @@
           )
           alert('Se ha enviado el email correctamente, gracias por contactarme 😀')
         } catch (error) {
-          alert(error)
+          console.log('Error de envio de email: ' + error);
         }
 
         this.addAllValuesForm()

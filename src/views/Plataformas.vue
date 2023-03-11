@@ -46,8 +46,8 @@
           <div class="device">
             <div class="cam"></div>
             <div class="btnsPc">
-              <span class="material-symbols-outlined">chrome_minimize</span>
-              <span class="material-symbols-outlined">chrome_maximize</span>
+              <span class="material-symbols-outlined">minimize</span>
+              <span class="material-symbols-outlined">crop_square</span>
               <span class="material-symbols-outlined">close</span>
             </div>
             <div class="tabWeb">
@@ -84,7 +84,7 @@
             <div class="btnsAnd">
               <span class="material-symbols-outlined">arrow_left</span>
               <span class="material-symbols-outlined">circle</span>
-              <span class="material-symbols-outlined">chrome_maximize</span>
+              <span class="material-symbols-outlined">crop_square</span>
             </div>
           </div>
 
