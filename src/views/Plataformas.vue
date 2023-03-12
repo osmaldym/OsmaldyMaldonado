@@ -87,7 +87,6 @@
               <span class="material-symbols-outlined">crop_square</span>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -103,17 +102,13 @@
         restWidth: 0
       }
     },
+    props: {
+      preventAll: { type: Function }
+    },
     mounted () { // Onload
       this.obtYDesplazar()
     },
     methods: {
-      // Todos los prevent
-      preventAll(e){
-        e.preventDefault()
-        e.stopPropagation()
-        e.stopImmediatePropagation()
-      },
-
       // Metodo para añadir transición automáticamente
       addTransition(elem){ elem.style.transition = 'all 0.5s ease-out' },
       

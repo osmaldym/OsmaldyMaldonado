@@ -18,14 +18,20 @@
     </nav>
 
     <div class="content">
-        <router-view />
+        <router-view :preventAll="preventAll"/>
         <router-view name="SobreMi"/>
-        <router-view name="PartPlats"/>
+        <router-view name="PartPlats" :preventAll="preventAll"/>
         <router-view name="Contactos"/>
     </div>
 </template>
 
 <script>
+    /**
+     * TODO: Cursores personalizados (No es posible aún, bug de window.history.replaceState() que 
+     * imposibilita su renderización normal, por lo tanto, el cursor parpadea cada que se hace scroll 
+     * en la página)
+     */
+
     export default {
         name: 'App',
         created () {
@@ -50,7 +56,7 @@
         },
         methods: {
             /**
-             * Creando y espcificando lo necesario
+             * Creando y especificando lo necesario
              */
             createNecesary(){
                 this.rootElem = document.documentElement
@@ -75,8 +81,18 @@
                 })
 
                 this.setModeDL()
-                
+
                 window.addEventListener('scroll', this.addAll)
+            },
+
+            /**
+             * Previniendo propagaciones del evento
+             * @param {Event} e 
+             */
+            preventAll(e){
+                e.preventDefault()
+                e.stopPropagation()
+                e.stopImmediatePropagation()
             },
 
             /**
@@ -84,12 +100,8 @@
              * @param {Event} e
              */
             addAll(e){
-                e.preventDefault()
-                e.stopPropagation()
-                e.stopImmediatePropagation()
-
+                this.preventAll(e)
                 this.addMenuEffect()
-
                 if (this.isPC) this.addChangeURL()
             },
 
@@ -138,7 +150,9 @@
             },
 
 
-            // Añadiendo efectos de ocultar/presentar menú
+            /**
+             * Añadiendo efectos de ocultar/presentar menú
+             */
             addMenuEffect(){
                 let y = window.scrollY
 
@@ -180,6 +194,9 @@
                 }
             },
 
+            /**
+             * Poniendo el modo oscuro o claro dependiendo del que esté
+             */
             setModeDL(){
                 if (this.getCookieDarkMode()){
                     this.showAndStack(this.computedDark, this.computedLight)
@@ -194,18 +211,26 @@
                 }
             },
 
+            /**
+             * Obteniendo cookie del modo actual
+             */
             getCookieDarkMode(){
                 if (this.$cookies.get('darkMode') != null &&
                     this.$cookies.get('darkMode') == 'true') return true;
                 else return false;
             },
 
-            showAndStack(elem1, elem2){
-                elem1.style.opacity = '1'
-                elem1.style.zIndex = '1'
+            /**
+             * Cambiando opacidad y pila a elementos - Usado especialmente en setModeDL()
+             * @param {HTMLElement} show 
+             * @param {HTMLElement} hide 
+             */
+            showAndStack(show, hide){
+                show.style.opacity = '1'
+                show.style.zIndex = '1'
 
-                elem2.style.opacity = '0'
-                elem2.style.zIndex = '0'
+                hide.style.opacity = '0'
+                hide.style.zIndex = '0'
             }
         }
     }

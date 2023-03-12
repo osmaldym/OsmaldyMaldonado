@@ -36,83 +36,86 @@
 </template>
 
 <script>
-  export default {
-    name: 'PartPresentacion',
-    data () { // Variables
-        return {
-            allFrags: [],
-            anims: [],
-            timeOutAnim: null,
-            valoresCont: null,
-            hideValor: null,
-            valor: 'Contratame por favor. Necesito dinero 🙏🏻'
-        }
-    },
-    mounted () { // Onload
-        this.getElemsAndAnim()
-    },
-    methods: {
-        // Metodo de onload para obtener elementos y animarlos
-        getElemsAndAnim(){
-            // Set time out para añadir los transition desde css y no desde js
-            setTimeout(() => {
-                this.allFrags = document.querySelector('.presentacion > .frags').childNodes
-                this.valoresCont = document.querySelector('.presentacion > .valores')
-
-                this.valoresCont.className += ' tall'
-
-                this.allFrags.forEach((elem) => this.animFrag(elem));
-                this.alertarUsuarioFrags();
-            }, 50);
+    export default {
+        name: 'PartPresentacion',
+        data () { // Variables
+            return {
+                allFrags: [],
+                anims: [],
+                timeOutAnim: null,
+                valoresCont: null,
+                hideValor: null,
+                valor: 'Contratame por favor. Necesito dinero 🙏🏻'
+            }
         },
-
-        // Metodo para alertar que se puede tocar un elemento
-        alertarUsuarioFrags(){
-            let touch = this.$cookies.get('touchAnimFrags')
-
-            this.allFrags.forEach(elem => {
-                if (!elem.className.includes('tall')) elem.className += ' tall';
-
-                if (elem.className.includes('anim')){
-                    if (touch == 'true') elem.className = elem.className.replace(' pulsar', '')
-                    else elem.className += ' pulsar'
-                }
-            })
+        props: {
+            preventAll: { type: Function }
         },
-
-        // Poniendole valor etico, presentandolo y ocultandolo
-        setValor(valor){
-            this.valor = valor
-            this.valoresCont.style.opacity = '1'
-            
-            clearTimeout(this.hideValor)
-
-            this.hideValor = setTimeout(() => {
-                this.valoresCont.style.opacity = '0'
-            }, 3000)
-
-            this.$cookies.set('touchAnimFrags', true, '4m')
-            this.alertarUsuarioFrags()
+        mounted () { // Onload
+            this.getElemsAndAnim()
         },
+        methods: {
+            // Metodo de onload para obtener elementos y animarlos
+            getElemsAndAnim(){
+                // Set time out para añadir los transition desde css y no desde js
+                setTimeout(() => {
+                    this.allFrags = document.querySelector('.presentacion > .frags').childNodes
+                    this.valoresCont = document.querySelector('.presentacion > .valores')
 
-        // Obtiendo numeros random
-        random(min, max){
-            return Math.floor(Math.random() * (max - min) + min);
-        },
+                    this.valoresCont.className += ' tall'
 
-        // Animando fragmentos
-        animFrag(elem){
-            setInterval(() => {
-                let neg = -10, pos = 2
+                    this.allFrags.forEach((elem) => this.animFrag(elem));
+                    this.alertarUsuarioFrags();
+                }, 10);
+            },
 
-                let numX = this.random(neg, pos), 
-                numY = this.random(neg, pos)
+            // Metodo para alertar que se puede tocar un elemento
+            alertarUsuarioFrags(){
+                let touch = this.$cookies.get('touchAnimFrags')
 
-                elem.style.transform = 'translate(' + numX + 'px, ' + numY + 'px)'
-            }, 1300);
+                this.allFrags.forEach(elem => {
+                    if (!elem.className.includes('tall')) elem.className += ' tall';
+
+                    if (elem.className.includes('anim')){
+                        if (touch == 'true') elem.className = elem.className.replace(' pulsar', '')
+                        else elem.className += ' pulsar'
+                    }
+                })
+            },
+
+            // Poniendole valor etico, presentandolo y ocultandolo
+            setValor(valor){
+                this.valor = valor
+                this.valoresCont.style.opacity = '1'
+                
+                clearTimeout(this.hideValor)
+
+                this.hideValor = setTimeout(() => {
+                    this.valoresCont.style.opacity = '0'
+                }, 3000)
+
+                this.$cookies.set('touchAnimFrags', true, '4m')
+                this.alertarUsuarioFrags()
+            },
+
+            // Obtiendo numeros random
+            random(min, max){
+                return Math.floor(Math.random() * (max - min) + min);
+            },
+
+            // Animando fragmentos
+            animFrag(elem){
+                setInterval(() => {
+                    let neg = -10, pos = 2
+
+                    let numX = this.random(neg, pos), 
+                    numY = this.random(neg, pos)
+
+                    elem.style.transform = 'translate(' + numX + 'px, ' + numY + 'px)'
+                }, 1300);
+            }
         }
     }
-  }
 </script>
 
 <style scoped>
@@ -235,11 +238,6 @@
         bottom: 14.5%;
         height: 10%;
     }
-
-    .frags > .anim {
-        cursor: pointer;
-    }
-
 
     /* Parte de los valores */
     .valores {
